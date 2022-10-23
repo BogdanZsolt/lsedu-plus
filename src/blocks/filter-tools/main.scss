@@ -1,0 +1,46 @@
+.wp-block-lsedu-plus-filter-tools {
+  margin-top: 0 !important;
+  display: block;
+
+  .filter {
+    flex: 1;
+
+    &-button {
+      background-color: #e4e4e4;
+      color: var(--ls-dark);
+      padding: 10px 25px 10px 35px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      font-weight: bold;position: relative;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+
+      &:hover {
+        padding: 14px 29px 14px 39px;;
+      }
+
+      &::before {
+        display: block;
+        position: absolute;
+        left: 15px;
+        font-weight: 900;
+        font-family: "bootstrap-icons";
+        font-size: 1.25rem;
+        content: '\F3CA';
+      }
+    }
+
+    &-container {
+      display: none;
+
+      &.active {
+        display: flex;
+      }
+
+      &.active {
+        display: flex;
+      }
+    }
+  }
+}

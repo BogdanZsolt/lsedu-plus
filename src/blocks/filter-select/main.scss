@@ -1,0 +1,61 @@
+.wp-block-lsedu-plus-filter-select {
+  margin-top: 0 !important;
+  display: block;
+
+  .filter {
+    flex: 1;
+
+    &-container {
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+
+  select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    background: unset;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+  }
+
+  .select {
+    position: relative;
+    width: 100%;
+    min-width: 100%;
+    border: 1px solid var(--select-border);
+    border-radius: 0.25rem;
+    padding: 0.25em 0.5rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+    &:after {
+      content: "";
+      width: 0.8rem;
+      height: 0.5rem;
+      background-color: var(--select-arrow);
+      clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+      display: grid;
+      position: absolute;
+      top: 50%;
+      right: 5px;
+    }
+  }
+}
+

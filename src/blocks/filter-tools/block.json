@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "lsedu-plus/filter-tools",
+  "title": "filter Tools",
+  "category": "text",
+  "description": "Adds a filter button that activate an filter toolbar",
+  "textdomain": "lsedu-plus",
+  "attributes": {
+    "showFiltersToolbar": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css"
+}

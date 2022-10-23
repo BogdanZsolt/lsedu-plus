@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelectorAll(".open-select"),t=document.querySelector(".wp-block-lsedu-plus-filter-select");e.forEach((e=>{e.addEventListener("click",(e=>{e.preventDefault(),t.classList.toggle("hidden")}))}))}));
