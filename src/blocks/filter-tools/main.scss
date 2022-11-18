@@ -6,8 +6,8 @@
     flex: 1;
 
     &-button {
-      background-color: #e4e4e4;
-      color: var(--ls-dark);
+      color: inherit;
+      background-color: inherit;
       padding: 10px 25px 10px 35px;
       border: none;
       outline: none;

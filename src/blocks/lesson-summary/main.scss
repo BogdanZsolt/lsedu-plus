@@ -1,0 +1,141 @@
+/* Lesson Summary */
+div.wp-block-lsedu-plus-lesson-summary {
+  position: relative;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 1200px !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--ls-brown);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: var(--ls-white);
+
+  .row {
+    position: relative;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+
+    &.separator {
+      border-top-width: 1px;
+      border-bottom-width: 0px;
+      border-left-width: 0px;
+      border-right-width: 0px;
+      border-style: solid;
+      border-top-color: var(--ls-brown);
+    }
+  }
+
+  .lesson-column-1 {
+    flex: 8.33%;
+  }
+
+  .lesson-column-2 {
+    flex: 16.66%;
+  }
+
+  .lesson-column-3 {
+    flex: 0.25%;
+  }
+
+  .lesson-column-4 {
+    flex: 33.33%
+  }
+
+  .lesson-column-5 {
+    flex: 41.66%;
+  }
+
+  .lesson-column-6 {
+    flex: 50%;
+  }
+
+  .lesson-column-7 {
+    flex: 58.33%;
+  }
+
+  .lesson-column-8 {
+    flex: 66.66%;
+  }
+
+  .lesson-column-9 {
+    flex: 0.75%;
+  }
+
+  .lesson-column-10 {
+    flex: 83.33%;
+  }
+
+  .lesson-column-11 {
+    flex: 91.66%;
+  }
+
+  .lesson-column-12 {
+    flex: 100%;
+  }
+
+  .bi {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: -1.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: block;
+    width: 3rem;
+    background-color: var(--ls-white);
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: var(--ls-brown);
+  }
+
+  .lesson-title {
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+    text-transform: uppercase;
+    color: var(--ls-brown);
+    text-align: center;
+  }
+
+  .lesson-data {
+    text-align: center;
+  }
+
+  .lesson-course__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .lesson-video-url {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+
+  .lesson-video-player {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .components-spinner {
+    margin: 0 auto;
+  }
+}

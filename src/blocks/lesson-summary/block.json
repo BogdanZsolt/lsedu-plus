@@ -1,0 +1,21 @@
+{
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+	"apiVersion": 2,
+	"name": "lsedu-plus/lesson-summary",
+	"title": "Lesson Summary",
+	"category": "la-saphire",
+	"description": "Adds a summary section for a lesson",
+	"textdomain": "lsedu-plus",
+	"attributes": {
+		"durationTime": {
+			"type": "string"
+		},
+		"course": {
+			"type": "string"
+		}
+	},
+	"usesContext": ["postId"],
+	"editorScript": "file:./index.js",
+	"style": "file:./index.css",
+	"script": "file:./frontend.js"
+}

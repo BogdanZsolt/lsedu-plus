@@ -1,0 +1,63 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "lsedu-plus/lesson-title",
+	"title": "La Saphire Lesson Title",
+	"category": "la-saphire",
+	"description": "LS Lesson Title Display.",
+	"parent": ["lsedu-plus/lesson-list"],
+	"attributes": {
+		"textAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"level": {
+			"type": "number",
+			"default": 5
+		},
+		"isLink": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkTarget": {
+			"type": "string",
+			"default": "_self"
+		},
+		"rel": {
+			"type": "string",
+			"attribute": "rel",
+			"default": ""
+		}
+	},
+	"usesContext": ["postId", "postType"],
+	"supports": {
+			"html": false,
+			"spacing": {
+				"margin": true,
+				"padding": true
+			},
+			"typography": {
+				"fontSize": true,
+				"lineHeight": true,
+				"__experimentalFontFamily": true,
+				"__experimentalFontStyle": true,
+				"__experimentalFontWeight": true,
+				"__experimentalLetterSpacing": true,
+				"__experimentalTextTransform": true,
+				"__experimentalDefaultControls": {
+					"fontSize": true,
+					"fontAppearance": true,
+					"textTransform": true
+				}
+			},
+			"color": {
+				"text": true,
+				"link": true,
+				"background": false
+			}
+	},
+	"textdomain": "lsedu-plus",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

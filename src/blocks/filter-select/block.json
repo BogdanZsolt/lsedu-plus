@@ -3,13 +3,37 @@
   "apiVersion": 2,
   "name": "lsedu-plus/filter-select",
   "title": "filter Select Toolbar",
-  "category": "text",
+  "category": "la-saphire",
   "description": "Adds a Filter select toolbar",
   "textdomain": "lsedu-plus",
   "attributes": {
     "hidingFilterToolbar": {
       "type": "boolean",
       "default": true
+    },
+    "area": {
+      "type": "string",
+      "default": ""
+    },
+    "category": {
+      "type": "string",
+      "default": ""
+    },
+    "author": {
+      "type": "string",
+      "default": ""
+    },
+    "intensity": {
+      "type": "string",
+      "default": ""
+    },
+    "level": {
+      "type": "string",
+      "default": ""
+    },
+    "duration": {
+      "type": "string",
+      "default": ""
     }
   },
   "editorScript": "file:./index.js",

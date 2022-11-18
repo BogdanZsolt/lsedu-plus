@@ -3,7 +3,7 @@
   "apiVersion": 2,
   "name": "lsedu-plus/auth-modal",
   "title": "Authentication Modal",
-  "category": "text",
+  "category": "la-saphire",
   "description": "Adds an authentication modal",
   "textdomain": "lsedu-plus",
   "attributes": {

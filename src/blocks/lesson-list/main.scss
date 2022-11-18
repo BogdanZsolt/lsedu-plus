@@ -1,0 +1,173 @@
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+
+.lsedup-lesson-list {
+  &__container {
+    padding: 0 1.25rem;
+    width: 100%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__button {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: red;
+  opacity: 1;
+}
+
+.swiper-button-prevv {
+  left: 1.875rem;
+}
+
+.swiper-button-next {
+  right: 1.875rem;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-family: "bootstrap-icons";
+  font-size: 6rem;
+  font-weight: 800;
+}
+
+.swiper-button-prev:after {
+  content: "\F284";
+}
+
+.swiper-button-next:after {
+  content: "\F285";
+}
+
+@media (min-width: 640px) {
+  .lsedup-lesson-list__container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+	.lsedup-lesson-list__container {
+		max-width: 768px;
+	}
+
+}
+@media (min-width: 1024px) {
+	.lsedup-lesson-list__container {
+		max-width: 1024px;
+	}
+}
+
+@media (min-width: 1280px) {
+	.lsedup-lesson-list__container {
+		max-width: 1280px;
+	}
+}
+
+@media (min-width: 1536px) {
+	.lsedup-lesson-list__container {
+		max-width: 1536px;
+	}
+}
+
+.wp-block-lsedu-plus-lesson-list {
+
+  &.isSlider {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative !important;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+
+    .lsedup-lesson-list__next {
+      position: absolute;
+      width: 2rem;
+      right: 4rem;
+      color: red;
+      opacity: 1;
+      z-index: 10;
+
+      &:after {
+        font-family: "bootstrap-icons";
+        content: "\F285";
+        font-size: 6rem;
+        font-weight: 800;
+      }
+    }
+
+    .lsedup-lesson-list__prev {
+      position: absolute;
+      width: 2rem;
+      left: 0;
+      color: red;
+      opacity: 1;
+      z-index: 10;
+
+      &:after {
+        font-family: "bootstrap-icons";
+        content: "\F284";
+        font-size: 6rem;
+        font-weight: 800;
+      }
+    }
+  }
+
+  &.is-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  &.has-columns-2 {
+    > div{
+      flex-shrink: 0;
+      width: calc(50% - 0.625rem);
+    }
+  }
+
+  &.has-columns-3 {
+    > div{
+      flex-shrink: 0;
+      width: calc(33.33333% - 0.83333rem);
+    }
+  }
+
+  &.has-columns-4 {
+    > div{
+      flex-shrink: 0;
+      width: calc(25% - 0.9375rem);
+    }
+  }
+
+  &.has-columns-5 {
+    > div{
+      flex-shrink: 0;
+      width: calc(20% - 1rem);
+    }
+  }
+
+  &.has-columns-6 {
+    > div{
+      flex-shrink: 0;
+      width: calc(16.66667% - 1.04167rem);
+    }
+  }
+}

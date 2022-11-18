@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "lsedu-plus/lesson-featured-image",
+	"title": "La Saphire Lesson Featured Image",
+	"category": "la-saphire",
+	"description": "LS Studio Featured Image Display.",
+	"attributes": {
+		"isLink": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkTarget": {
+			"type": "string",
+			"default": "_self"
+		},
+		"width": {
+			"type": "string"
+		},
+		"height": {
+			"type": "string"
+		},
+		"scale": {
+			"type": "string",
+			"defaultt": "cover"
+		},
+		"sizeSlug": {
+			"type": "string",
+			"default": "videoPlaceholderImage"
+		},
+		"style": {
+			"type": "object",
+			"default": {
+				"border": {
+					"radius": 10
+				}
+			}
+		}
+	},
+	"usesContext": [ "postId", "postType", "queryId" ],
+	"supports": {
+		"align": [ "left", "right", "center", "wide", "full" ],
+		"color": {
+			"__experimentalDuotone": "img",
+			"text": false,
+			"background": false
+		},
+		"__experimentalBorder": {
+			"radius": true,
+			"__experimentalSelector": "img",
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"radius": true
+			}
+		},
+		"html": false,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"textdomain": "ls-studio-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

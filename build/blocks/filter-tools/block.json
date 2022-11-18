@@ -3,7 +3,7 @@
   "apiVersion": 2,
   "name": "lsedu-plus/filter-tools",
   "title": "filter Tools",
-  "category": "text",
+  "category": "la-saphire",
   "description": "Adds a filter button that activate an filter toolbar",
   "textdomain": "lsedu-plus",
   "attributes": {
@@ -13,5 +13,14 @@
     }
   },
   "editorScript": "file:./index.js",
-  "style": "file:./index.css"
+  "style": "file:./index.css",
+  "supports": {
+    "html": false,
+    "ariaLabel": true,
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true
+    }
+  }
 }

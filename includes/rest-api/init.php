@@ -13,4 +13,10 @@ function lsedup_rest_api_init(){
 		'callback' => 'lsedup_rest_api_signin_handler',
 		'permission_callback' => '__return_true',
 	]);
+
+	register_rest_route('lsedup/v1', '/rate', [
+		'methods' => WP_REST_Server::CREATABLE,
+		'callback' => 'lsedup_rest_api_add_rating_handler',
+		'permission_callback' => 'is_user_logged_in',
+	]);
 }

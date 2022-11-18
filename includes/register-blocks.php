@@ -14,6 +14,22 @@ function lsedup_register_blocks(){
 		]],
 		[ 'name' => 'filter-select', 'options' => [
 			'render_callback' => 'lsedup_filter_select_render_cb'
+		]],
+		[ 'name' => 'lesson-summary', 'options' => [
+			'render_callback' => 'lsedup_lesson_summary_render_cb'
+		]],
+		[ 'name' => 'lesson-list', 'options' => [
+			'render_callback' => 'lsedup_lesson_list_render_cb',
+			'skip_inner_blocks' => true,
+		]],
+		[ 'name' => 'lesson-title', 'options' => [
+			'render_callback' => 'lsedup_lesson_title_render_cb'
+		]],
+		[ 'name' => 'lesson-featured-image', 'options' => [
+			'render_callback' => 'lsedup_lesson_featured_image_render_cb'
+		]],
+		[ 'name' => 'lesson-list-header', 'options' => [
+			'render_callback' => 'lsedup_lesson_list_header_render_cb'
 		]]
 	];
 

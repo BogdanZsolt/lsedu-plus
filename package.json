@@ -1,27 +1,38 @@
 {
-  "name": "lsedu-plus",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "wp-scripts build",
-    "check-engines": "wp-scripts check-engines",
-    "check-licenses": "wp-scripts check-licenses",
-    "format": "wp-scripts format",
-    "lint:css": "wp-scripts lint-style",
-    "lint:js": "wp-scripts lint-js",
-    "lint:md:docs": "wp-scripts lint-md-docs",
-    "lint:pkg-json": "wp-scripts lint-pkg-json",
-    "packages-update": "wp-scripts packages-update",
-    "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start",
-    "test:e2e": "wp-scripts test-e2e",
-    "test:unit": "wp-scripts test-unit-js"
-  },
-  "keywords": [],
-  "author": "Zsolt Bogdán",
-  "license": "ISC",
-  "devDependencies": {
-    "@wordpress/scripts": "^24.3.0"
-  }
+	"name": "lsedu-plus",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start"
+	},
+	"prettier": "@wordpress/prettier-config",
+	"stylelint": {
+		"extends": "@wordpress/stylelint-config/scss"
+	},
+	"keywords": [],
+	"author": "Zsolt Bogdán",
+	"license": "ISC",
+	"devDependencies": {
+		"@wordpress/prettier-config": "^2.3.0",
+		"@wordpress/scripts": "^24.3.0",
+		"@wordpress/stylelint-config": "^21.3.0"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.10.4",
+		"@emotion/styled": "^11.10.4",
+		"@mui/material": "^5.10.11",
+		"@wordpress/api-fetch": "^6.18.0",
+		"@wordpress/element": "^4.18.0",
+		"@wordpress/icons": "^9.11.0",
+		"classnames": "^2.3.2",
+		"lodash": "^4.17.21",
+		"swiper": "^8.4.4"
+	}
 }
