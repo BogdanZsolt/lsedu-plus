@@ -8,13 +8,11 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { ToggleControl, TextControl, PanelBody } from '@wordpress/components';
-import HeadingLevelDropdown from './headingLevelDropdown';
+import HeadingLevelDropdown from '../tools/headingLevelDropdown';
 
 export default function Edit( { attributes, setAttributes, context } ) {
 	const { textAlign, level, isLink, linkTarget, rel } = attributes;
 	const { postId, postType } = context;
-
-	// console.log(context);
 
 	const title = useEntityProp( 'postType', postType, 'title', postId )[ 0 ];
 	const link = useEntityProp( 'postType', postType, 'link', postId )[ 0 ];

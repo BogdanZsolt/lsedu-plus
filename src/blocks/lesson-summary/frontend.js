@@ -35,7 +35,6 @@ function LessonRating( props ) {
 					},
 				} );
 
-				console.log( response );
 				if ( response.status == 2 ) {
 					setAvgRating( response.rating );
 				}

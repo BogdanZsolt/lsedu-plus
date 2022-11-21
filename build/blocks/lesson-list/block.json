@@ -7,51 +7,13 @@
   "category": "la-saphire",
   "description": "Example static block scaffolded with Create Block tool.",
   "attributes": {
-    "postType": {
-      "type": "string",
-      "default": "lesson"
-    },
     "isSlider": {
       "type": "boolean",
       "default": false
     },
-    "order": {
-      "type": "string",
-      "default": "asc"
-    },
     "columns": {
       "type": "number",
       "default": 3
-    },
-    "orderBy": {
-      "type": "string",
-      "default": "title"
-    },
-    "listTitleType": {
-      "type": "string",
-      "default": "area"
-    },
-    "area": {
-      "type": "string",
-      "default": ""
-    },
-    "category": {
-      "type": "string"
-    },
-    "intensity": {
-      "type": "string"
-    },
-    "levels": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
-    },
-    "durations": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
     },
     "displayLayout": {
       "type": "string",
@@ -75,10 +37,12 @@
       "padding": true
     }
   },
-  "providesContext": {
-    "postType": "postType",
-    "listTitleType": "listTitleType"
-  },
+  "usesContext": [
+    "postType",
+    "order",
+    "orderBy",
+    "taxonomyList"
+  ],
   "textdomain": "lsedu-plus",
   "editorScript": "file:./index.js",
   "style": "file:./index.css",

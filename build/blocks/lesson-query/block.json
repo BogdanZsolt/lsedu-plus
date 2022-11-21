@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "lsedu-plus/lesson-query",
+  "version": "0.1.0",
+  "title": "La Saphire Lesson Query",
+  "category": "la-saphire",
+  "description": "Example static block scaffolded with Create Block tool.",
+  "attributes": {
+    "postType": {
+      "type": "string",
+      "default": "lesson"
+    },
+    "order": {
+      "type": "string",
+      "default": "asc"
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "title"
+    },
+    "taxonomyList": {
+      "type": "object",
+      "default": {
+        "area": "",
+        "category": "",
+        "intensity": "",
+        "level": "",
+        "duration": "",
+        "taxType": ""
+      }
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "text": false,
+      "link": false,
+      "background": true,
+      "gradients": true
+    },
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "providesContext": {
+    "postType": "postType",
+    "order": "order",
+    "orderBy": "orderBy",
+    "taxonomyList": "taxonomyList"
+  },
+  "textdomain": "lsedu-plus",
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css"
+}

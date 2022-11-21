@@ -11,51 +11,24 @@
 			"type": "string",
 			"default": "lesson"
 		},
-		"isSlider": {
-			"type": "boolean",
-			"default": false
-		},
 		"order": {
 			"type": "string",
 			"default": "asc"
-		},
-		"columns": {
-			"type": "number",
-			"default": 3
 		},
 		"orderBy": {
 			"type": "string",
 			"default": "title"
 		},
-		"listTitleType": {
-			"type": "string",
-			"default": "area"
-		},
-		"area": {
-			"type": "string",
-			"default": ""
-		},
-		"category": {
-			"type": "string"
-		},
-		"intensity": {
-			"type": "string"
-		},
-		"levels": {
-			"type": "array",
-			"items": {
-				"type": "object"
+		"taxonomyList": {
+			"type": "object",
+			"default": {
+				"area": "",
+				"category": "",
+				"intensity": "",
+				"level": "",
+				"duration": "",
+				"taxType": ""
 			}
-		},
-		"durations": {
-			"type": "array",
-			"items": {
-				"type": "object"
-			}
-		},
-		"displayLayout": {
-			"type": "string",
-			"default": "list"
 		}
 	},
 	"supports": {
@@ -74,7 +47,9 @@
 	},
 	"providesContext": {
 		"postType": "postType",
-		"listTitleType": "listTitleType"
+		"order": "order",
+		"orderBy": "orderBy",
+		"taxonomyList": "taxonomyList"
 	},
 	"textdomain": "lsedu-plus",
 	"editorScript": "file:./index.js",

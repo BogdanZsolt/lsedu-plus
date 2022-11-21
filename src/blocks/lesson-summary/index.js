@@ -53,7 +53,6 @@ registerBlockType( block.name, {
 				status: 'publish',
 			} );
 		} );
-		console.log( post );
 
 		const termCategoryIDs = useSelect( ( select ) => {
 			return select( 'core/editor' ).getCurrentPostAttribute(

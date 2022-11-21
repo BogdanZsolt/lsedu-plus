@@ -7,16 +7,9 @@
   "category": "la-saphire",
   "description": "Example static block scaffolded with Create Block tool.",
   "parent": [
-    "lsedu-plus/lesson-list"
+    "lsedu-plus/lesson-query"
   ],
-  "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "link": {
-      "type": "string"
-    }
-  },
+  "attributes": {},
   "supports": {
     "align": [
       "wide",
@@ -34,11 +27,6 @@
       "padding": true
     }
   },
-  "usesContext": [
-    "postId",
-    "postType",
-    "listTitleType"
-  ],
   "textdomain": "lsedu-plus",
   "editorScript": "file:./index.js",
   "style": "file:./index.css"

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "lsedu-plus/lesson-list-header-title",
+  "version": "0.1.0",
+  "title": "La Saphire Lesson List Header Title",
+  "category": "la-saphire",
+  "description": "Example static block scaffolded with Create Block tool.",
+  "parent": [
+    "lsedu-plus/lesson-list-header"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "link": {
+      "type": "string",
+      "default": "#"
+    },
+    "linkTarget": {
+      "type": "string",
+      "default": "_self"
+    },
+    "level": {
+      "type": "number",
+      "default": 3
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "left"
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "text": true,
+      "link": true,
+      "background": true,
+      "gradients": true
+    },
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "usesContext": [
+    "postId",
+    "postType",
+    "taxonomyList"
+  ],
+  "textdomain": "lsedu-plus",
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css"
+}

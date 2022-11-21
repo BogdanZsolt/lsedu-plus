@@ -6,15 +6,8 @@
 	"title": "La Saphire Lesson List Header",
 	"category": "la-saphire",
 	"description": "Example static block scaffolded with Create Block tool.",
-  "parent": ["lsedu-plus/lesson-list"],
-	"attributes": {
-    "title": {
-      "type": "string"
-    },
-    "link": {
-      "type": "string"
-    }
-	},
+	"parent": [ "lsedu-plus/lesson-query" ],
+  "attributes": {},
 	"supports": {
 		"align": [ "wide", "full" ],
 		"color": {
@@ -29,7 +22,6 @@
 			"padding": true
 		}
 	},
-  "usesContext": ["postId", "postType", "listTitleType"],
 	"textdomain": "lsedu-plus",
 	"editorScript": "file:./index.js",
 	"style": "file:./index.css"

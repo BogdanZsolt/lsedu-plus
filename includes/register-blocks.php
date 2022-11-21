@@ -28,9 +28,11 @@ function lsedup_register_blocks(){
 		[ 'name' => 'lesson-featured-image', 'options' => [
 			'render_callback' => 'lsedup_lesson_featured_image_render_cb'
 		]],
-		[ 'name' => 'lesson-list-header', 'options' => [
-			'render_callback' => 'lsedup_lesson_list_header_render_cb'
-		]]
+		[ 'name' => 'lesson-list-header-title', 'options' => [
+			'render_callback' => 'lsedup_lesson_list_header_title_render_cb'
+		]],
+		[ 'name' => 'lesson-query' ],
+		[ 'name' => 'lesson-list-header']
 	];
 
 	foreach($blocks as $block){

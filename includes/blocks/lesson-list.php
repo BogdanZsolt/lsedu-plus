@@ -1,14 +1,19 @@
 <?php
 
 function lsedup_lesson_list_render_cb($attributes, $content, $block){
-	$category_id = (isset($attributes['category']) && !empty($attributes['category'])) ? intval($attributes['category']) : intval('');
-	$category_operator = (isset($attributes['category']) && !empty($attributes['category'])) ? 'IN' : 'NOT IN';
-	$area_id = (isset($attributes['area']) && !empty($attributes['area'])) ? intval($attributes['area']) : intval('');
-	$area_operator = (isset($attributes['area']) && !empty($attributes['area'])) ? 'IN' : 'NOT IN';
-	$intensity_id = (isset($attributes['intensity']) && !empty($attributes['intensity'])) ? intval($attributes['intensity']) : intval('');
-	$intensity_operator = (isset($attributes['intensity']) && !empty($attributes['intensity'])) ? 'IN' : 'NOT IN';
+	$taxonomy_list = $block->context['taxonomyList'];
+	$area_id = (isset($taxonomy_list['area']) && !empty($taxonomy_list['area'])) ? intval($taxonomy_list['area']) : intval('');
+	$area_operator = (isset($taxonomy_list['area']) && !empty($taxonomy_list['area'])) ? 'IN' : 'NOT IN';
+	$category_id = (isset($taxonomy_list['category']) && !empty($taxonomy_list['category'])) ? intval($taxonomy_list['category']) : intval('');
+	$category_operator = (isset($taxonomy_list['category']) && !empty($taxonomy_list['category'])) ? 'IN' : 'NOT IN';
+	$intensity_id = (isset($taxonomy_list['intensity']) && !empty($taxonomy_list['intensity'])) ? intval($taxonomy_list['intensity']) : intval('');
+	$intensity_operator = (isset($taxonomy_list['intensity']) && !empty($taxonomy_list['intensity'])) ? 'IN' : 'NOT IN';
+	$level_id = (isset($taxonomy_list['level']) && !empty($taxonomy_list['level'])) ? intval($taxonomy_list['level']) : intval('');
+	$level_operator = (isset($taxonomy_list['level']) && !empty($taxonomy_list['level'])) ? 'IN' : 'NOT IN';
+	$duration_id = (isset($taxonomy_list['duration']) && !empty($taxonomy_list['duration'])) ? intval($taxonomy_list['duration']) : intval('');
+	$duration_operator = (isset($taxonomy_list['duration']) && !empty($taxonomy_list['duration'])) ? 'IN' : 'NOT IN';
 	$query_args = array(
-		'post_type'	=> 'lesson',
+		'post_type'	=> $block->context['postType'],
 		'post_status' => 'publish',
 		'order'	=> 'ASC',
 		'orderby'	=> 'title',
@@ -33,6 +38,18 @@ function lsedup_lesson_list_render_cb($attributes, $content, $block){
 				'field' => 'term_id',
 				'terms' => $intensity_id,
 				'operator' => $intensity_operator,
+			),
+			array(
+				'taxonomy' => 'level',
+				'field' => 'term_id',
+				'terms' => $level_id,
+				'operator' => $level_operator,
+			),
+			array(
+				'taxonomy' => 'duration',
+				'field' => 'term_id',
+				'terms' => $duration_id,
+				'operator' => $duration_operator,
 			)
 		)
 	);
@@ -69,12 +86,6 @@ function lsedup_lesson_list_render_cb($attributes, $content, $block){
 	ob_start();
 	?>
 <div class="lsedup-lesson-list__container">
-  <div class="lsedup-lesson-list__header">
-    <h2 class="lsedup-lesson-list__title"><?php echo $listTitle; ?></h2>
-    <a class="lsedup-lesson-list__button" href="/area/lifedesign/">
-      See All
-    </a>
-  </div>
   <div <?php echo $wrapper_attributes; ?>>
     <?php if($isSlider){ ?>
     <div class="lsedup-lesson-list__wrapper swiper-wrapper">

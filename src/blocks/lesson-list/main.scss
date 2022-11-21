@@ -1,25 +1,11 @@
 @import 'swiper/scss';
 @import 'swiper/scss/navigation';
 
-.lsedup-lesson-list {
-  &__container {
-    padding: 0 1.25rem;
-    width: 100%;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__button {
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-  }
+.lsedup-lesson-list __container {
+  padding: 0;
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .swiper-button-prev,
@@ -49,36 +35,6 @@
 
 .swiper-button-next:after {
   content: "\F285";
-}
-
-@media (min-width: 640px) {
-  .lsedup-lesson-list__container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-	.lsedup-lesson-list__container {
-		max-width: 768px;
-	}
-
-}
-@media (min-width: 1024px) {
-	.lsedup-lesson-list__container {
-		max-width: 1024px;
-	}
-}
-
-@media (min-width: 1280px) {
-	.lsedup-lesson-list__container {
-		max-width: 1280px;
-	}
-}
-
-@media (min-width: 1536px) {
-	.lsedup-lesson-list__container {
-		max-width: 1536px;
-	}
 }
 
 .wp-block-lsedu-plus-lesson-list {

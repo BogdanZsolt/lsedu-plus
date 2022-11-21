@@ -1,0 +1,36 @@
+.wp-block-lsedu-plus-lesson-query {
+  padding: 0;
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 640px) {
+  .wp-block-lsedu-plus-lesson-query {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+	.wp-block-lsedu-plus-lesson-query {
+		max-width: 768px;
+	}
+
+}
+@media (min-width: 1024px) {
+	.wp-block-lsedu-plus-lesson-query {
+		max-width: 1024px;
+	}
+}
+
+@media (min-width: 1280px) {
+	.wp-block-lsedu-plus-lesson-query {
+		max-width: 1280px;
+	}
+}
+
+@media (min-width: 1536px) {
+	.wp-block-lsedu-plus-lesson-query {
+		max-width: 1536px;
+	}
+}
