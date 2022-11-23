@@ -1,9 +1,18 @@
 <?php
 
 function lsedup_lesson_list_header_title_render_cb($attributes, $content, $block){
-	$title = isset($attributes['title'] ) && !empty($attributes['title']) ? $attributes['title'] : '';
-	$link = isset($attributes['link']) && !empty($attributes['link']) ? $attributes['link'] : '#';
-	$title = sprintf('<a href="%1$s" target="%2$s">%3$s</a>', $link, esc_attr($attributes['linkTarget']), $title);
+	$taxonomy_list = $block->context['taxonomyList'];
+	$is_title_set_active = $attributes['isTitleSettingActive'];
+	$titleInactive = isset($attributes['titleInactive'] ) && !empty($attributes['titleInactive']) ? $attributes['titleInactive'] : '';
+	$term_id = intval($taxonomy_list[$taxonomy_list['taxType']]);
+	$tax_type =  $taxonomy_list['taxType'];
+	$term = get_term($term_id, $tax_type);
+	$title = isset($term) && !empty($term) ? $term->name : '';
+	$term_link = get_term_link($term_id, $tax_type);
+	$link = !is_wp_error($term_link) && !empty($term_link) ? $term_link : '#';
+	$title = $is_title_set_active ? $title : $titleInactive;
+	// var_dump($attributes['isLink']);
+	$title = $attributes['isLink'] ? sprintf('<a href="%1$s" target="%2$s">%3$s</a>', $link, esc_attr($attributes['linkTarget']), $title) : $title;
 	$tag_name = 'h3';
 	$align_class_name = empty($attributes['textAlign']) ? '' : "has-text-align-{$attributes['textAlign']}";
 	if(isset($attributes['level'])){

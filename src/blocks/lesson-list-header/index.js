@@ -1,7 +1,8 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import './main.scss';
+import './editor.scss';
+import './style.scss';
 import block from './block.json';
 
 // Import the logo
@@ -13,13 +14,23 @@ registerBlockType( block.name, {
 		const blockProps = useBlockProps( {
 			className: classnames( 'lsedup-lesson-list__header' ),
 		} );
-		const TEMPLATE = [ [ 'lsedu-plus/lesson-list-header-title', {} ] ];
+		const TEMPLATE = [
+			[ 'lsedu-plus/lesson-list-header-title', {} ],
+			[
+				'lsedu-plus/lesson-list-header-title',
+				{
+					titleInactive: 'See All',
+					level: 5,
+					isTitleSettingActive: false,
+				},
+			],
+		];
 
 		// console.log( listTitle );
 
 		return (
 			<div { ...blockProps }>
-				<InnerBlocks template={ TEMPLATE } orientation="vertical" />
+				<InnerBlocks template={ TEMPLATE } />
 			</div>
 		);
 	},

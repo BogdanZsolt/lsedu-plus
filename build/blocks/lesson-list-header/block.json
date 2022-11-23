@@ -29,5 +29,6 @@
   },
   "textdomain": "lsedu-plus",
   "editorScript": "file:./index.js",
-  "style": "file:./index.css"
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
 }

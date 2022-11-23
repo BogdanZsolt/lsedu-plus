@@ -8,8 +8,21 @@
 	"description": "Example static block scaffolded with Create Block tool.",
   "parent": ["lsedu-plus/lesson-list-header"],
 	"attributes": {
-		"title": {
+		"titleInactive": {
 			"type": "string",
+			"default": ""
+		},
+		"isTitleSettingActive": {
+			"type": "boolean",
+			"default": "true"
+		},
+		"isLink": {
+			"type": "boolean",
+			"default": "true"
+		},
+		"rel": {
+			"type": "string",
+			"attribute": "rel",
 			"default": ""
 		},
 		"link": {

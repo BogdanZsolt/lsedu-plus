@@ -2,7 +2,7 @@
 
 function lsedup_lesson_summary_render_cb($atts, $content, $block){
 	$postID = $block->context['postId'];
-	$postAreaTerms = get_the_terms($postID, 'area');
+	$postAreaTerms = get_the_terms($postID, '');
 	$postAreaTerms = is_array($postAreaTerms) ? $postAreaTerms : [];
 	$areas = '';
 	foreach($postAreaTerms as $key => $term){
