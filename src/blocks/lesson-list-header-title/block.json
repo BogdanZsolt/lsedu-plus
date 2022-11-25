@@ -6,7 +6,7 @@
 	"title": "La Saphire Lesson List Header Title",
 	"category": "la-saphire",
 	"description": "Example static block scaffolded with Create Block tool.",
-  "parent": ["lsedu-plus/lesson-list-header"],
+	"parent": [ "lsedu-plus/lesson-list-header" ],
 	"attributes": {
 		"titleInactive": {
 			"type": "string",
@@ -56,7 +56,7 @@
 			"padding": true
 		}
 	},
-  "usesContext": ["postId", "postType", "taxonomyList"],
+	"usesContext": [ "postId", "postType", "taxonomyList" ],
 	"textdomain": "lsedu-plus",
 	"editorScript": "file:./index.js",
 	"style": "file:./index.css"

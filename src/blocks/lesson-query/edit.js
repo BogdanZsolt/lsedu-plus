@@ -5,7 +5,12 @@ import {
 	InnerBlocks,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, QueryControls, SelectControl } from '@wordpress/components';
+import {
+	PanelBody,
+	QueryControls,
+	SelectControl,
+	ToggleControl,
+} from '@wordpress/components';
 import { store as coreStore } from '@wordpress/core-data';
 import classnames from 'classnames';
 import FilterControls from './filter-controls';
@@ -18,17 +23,11 @@ const TEMPLATE = [
 // Edit
 
 export default function Edit( props ) {
-	const { attributes, setAttributes } = props;
-	const {
-		orderBy,
-		order,
-		area,
-		category,
-		intensity,
-		level,
-		duration,
-		taxonomyList,
-	} = attributes;
+	const { attributes, setAttributes, context } = props;
+	const { orderBy, order, taxonomyList, inherit } = attributes;
+	const { postId } = context;
+
+	// console.log( inherit );
 
 	const {
 		categoriesList,
@@ -66,11 +65,11 @@ export default function Edit( props ) {
 		className: classnames( 'lsedup-lesson-list__container' ),
 	} );
 
-	const onTaxTypeChange = ( value ) => {
-		const tempObj = { ...taxonomyList };
-		tempObj.taxType = value;
-		setAttributes( { taxonomyList: tempObj } );
-	};
+	// const onTaxTypeChange = ( value ) => {
+	// 	const tempObj = { ...taxonomyList };
+	// 	tempObj.taxType = value;
+	// 	setAttributes( { taxonomyList: tempObj } );
+	// };
 
 	const onAreaChange = ( value ) => {
 		const tempObj = { ...taxonomyList };
@@ -78,29 +77,29 @@ export default function Edit( props ) {
 		setAttributes( { taxonomyList: tempObj } );
 	};
 
-	const onCategoryChange = ( value ) => {
-		const tempObj = { ...taxonomyList };
-		tempObj.category = value;
-		setAttributes( { taxonomyList: tempObj } );
-	};
+	// const onCategoryChange = ( value ) => {
+	// 	const tempObj = { ...taxonomyList };
+	// 	tempObj.category = value;
+	// 	setAttributes( { taxonomyList: tempObj } );
+	// };
 
-	const onIntensityChange = ( value ) => {
-		const tempObj = { ...taxonomyList };
-		tempObj.intensity = value;
-		setAttributes( { taxonomyList: tempObj } );
-	};
+	// const onIntensityChange = ( value ) => {
+	// 	const tempObj = { ...taxonomyList };
+	// 	tempObj.intensity = value;
+	// 	setAttributes( { taxonomyList: tempObj } );
+	// };
 
-	const onLevelChange = ( value ) => {
-		const tempObj = { ...taxonomyList };
-		tempObj.level = value;
-		setAttributes( { taxonomyList: tempObj } );
-	};
+	// const onLevelChange = ( value ) => {
+	// 	const tempObj = { ...taxonomyList };
+	// 	tempObj.level = value;
+	// 	setAttributes( { taxonomyList: tempObj } );
+	// };
 
-	const onDurationChange = ( value ) => {
-		const tempObj = { ...taxonomyList };
-		tempObj.duration = value;
-		setAttributes( { taxonomyList: tempObj } );
-	};
+	// const onDurationChange = ( value ) => {
+	// 	const tempObj = { ...taxonomyList };
+	// 	tempObj.duration = value;
+	// 	setAttributes( { taxonomyList: tempObj } );
+	// };
 
 	return (
 		<>
@@ -118,7 +117,20 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'Filters', 'ls-studio-blocks' ) }>
-					<SelectControl
+					<ToggleControl
+						label={ __(
+							'Inherit query from template',
+							'lsedu-plus'
+						) }
+						help={ __(
+							'Toggle to use the global query context that is set with the current template, such as an archive or search. Disable to customize the settings independently.'
+						) }
+						checked={ inherit }
+						onChange={ ( value ) =>
+							setAttributes( { inherit: !! value } )
+						}
+					/>
+					{ /* <SelectControl
 						label={ __( 'Set Title', 'lsedu-plus' ) }
 						value={ taxonomyList.taxType }
 						options={ [
@@ -145,14 +157,14 @@ export default function Edit( props ) {
 							},
 						] }
 						onChange={ onTaxTypeChange }
-					/>
+					/> */ }
 					<FilterControls
 						label={ __( 'Area', 'lsedu-plus' ) }
 						categoriesList={ areasList }
 						selectedCategoryId={ taxonomyList.area }
 						onCategoryChange={ onAreaChange }
 					/>
-					<FilterControls
+					{ /* <FilterControls
 						label={ __( 'Category', 'lsedu-plus' ) }
 						categoriesList={ categoriesList }
 						selectedCategoryId={ taxonomyList.category }
@@ -175,7 +187,7 @@ export default function Edit( props ) {
 						categoriesList={ durationsList }
 						selectedCategoryId={ taxonomyList.duration }
 						onCategoryChange={ onDurationChange }
-					/>
+					/> */ }
 				</PanelBody>
 			</InspectorControls>
 			<div { ...blockProps }>

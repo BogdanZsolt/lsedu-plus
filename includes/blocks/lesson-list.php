@@ -1,7 +1,9 @@
 <?php
 
 function lsedup_lesson_list_render_cb($attributes, $content, $block){
+	global $wp_query;
 	$taxonomy_list = $block->context['taxonomyList'];
+	$use_global_query = ( isset( $block->context['inherit'] ) && $block->context['inherit'] );
 	$area_id = (isset($taxonomy_list['area']) && !empty($taxonomy_list['area'])) ? intval($taxonomy_list['area']) : intval('');
 	$area_operator = (isset($taxonomy_list['area']) && !empty($taxonomy_list['area'])) ? 'IN' : 'NOT IN';
 	$category_id = (isset($taxonomy_list['category']) && !empty($taxonomy_list['category'])) ? intval($taxonomy_list['category']) : intval('');
@@ -53,7 +55,12 @@ function lsedup_lesson_list_render_cb($attributes, $content, $block){
 			)
 		)
 	);
-	$query = new WP_Query($query_args);
+	if($use_global_query){
+		global $wp_query;
+		$query = clone $wp_query;
+	} else {
+		$query = new WP_Query($query_args);
+	}
 	if(!$query->have_posts()){
 		return '';
 	}
@@ -69,18 +76,20 @@ function lsedup_lesson_list_render_cb($attributes, $content, $block){
 	$content = '';
 	while ( $query->have_posts() ) {
 		$query->the_post();
-		$block_instance = $block->parsed_block;
-		$block_instance['blockName'] = 'core/null';
-		$block_content = ( new WP_Block(
-				$block_instance,
-				array(
-					'postType' => get_post_type(),
-					'postId'	=> get_the_ID(),
+		if(wp_get_post_parent_id() === 0) {
+			$block_instance = $block->parsed_block;
+			$block_instance['blockName'] = 'core/null';
+			$block_content = ( new WP_Block(
+					$block_instance,
+					array(
+						'postType' => get_post_type(),
+						'postId'	=> get_the_ID(),
+					)
 				)
-			)
-		)->render(array('dynamic'=> false));
-		$post_classes = implode( ' ', get_post_class( 'wp-block-post swiper-slide' ) );
-		$content .= '<div class="' . $post_classes . '">' . $block_content . '</div>';
+			)->render(array('dynamic'=> false));
+			$post_classes = implode( ' ', get_post_class( 'wp-block-post swiper-slide' ) );
+			$content .= '<div class="' . $post_classes . '">' . $block_content . '</div>';
+		}
 	}
 
 	ob_start();

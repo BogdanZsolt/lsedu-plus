@@ -19,6 +19,10 @@
 			"type": "string",
 			"default": "title"
 		},
+		"inherit": {
+			"type": "boolean",
+			"default": false
+		},
 		"taxonomyList": {
 			"type": "object",
 			"default": {
@@ -49,8 +53,10 @@
 		"postType": "postType",
 		"order": "order",
 		"orderBy": "orderBy",
-		"taxonomyList": "taxonomyList"
+		"taxonomyList": "taxonomyList",
+		"inherit": "inherit"
 	},
+	"usesContext": ["postId"],
 	"textdomain": "lsedu-plus",
 	"editorScript": "file:./index.js",
 	"style": "file:./index.css"

@@ -34,7 +34,7 @@
 			"padding": true
 		}
 	},
-	"usesContext": ["postType", "order", "orderBy", "taxonomyList"],
+	"usesContext": ["postType", "order", "orderBy", "taxonomyList", "inherit"],
 	"textdomain": "lsedu-plus",
 	"editorScript": "file:./index.js",
 	"style": "file:./index.css",

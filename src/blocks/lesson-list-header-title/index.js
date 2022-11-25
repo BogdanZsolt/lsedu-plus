@@ -41,6 +41,7 @@ registerBlockType( block.name, {
 		let title = '';
 		let link = '';
 
+		console.log( taxonomyList );
 		// console.log(
 		// 	'level: ',
 		// 	level,
@@ -51,6 +52,8 @@ registerBlockType( block.name, {
 		// 	' titleSettingActve: ',
 		// 	isTitleSettingActive
 		// );
+
+		// console.warn( 'edit', title );
 
 		const { list, isLoading } = useSelect( ( select ) => {
 			const { getEntityRecords, isResolving } = select( coreStore );
@@ -183,7 +186,7 @@ registerBlockType( block.name, {
 					</PanelBody>
 					<PanelBody title={ __( 'Link settings', 'lsedu-plus' ) }>
 						<ToggleControl
-							label={ __( 'Make title a link' ) }
+							label={ __( 'Make title a link', 'lsedu-plus' ) }
 							onChange={ () =>
 								setAttributes( { isLink: ! isLink } )
 							}
@@ -192,7 +195,10 @@ registerBlockType( block.name, {
 						{ isLink && (
 							<>
 								<ToggleControl
-									label={ __( 'Open in new tab' ) }
+									label={ __(
+										'Open in new tab',
+										'lsedu-plus'
+									) }
 									onChange={ ( value ) =>
 										setAttributes( {
 											linkTarget: value

@@ -41,7 +41,8 @@
     "postType",
     "order",
     "orderBy",
-    "taxonomyList"
+    "taxonomyList",
+    "inherit"
   ],
   "textdomain": "lsedu-plus",
   "editorScript": "file:./index.js",
