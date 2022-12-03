@@ -13,185 +13,129 @@ import {
 } from '@wordpress/components';
 import { store as coreStore } from '@wordpress/core-data';
 import classnames from 'classnames';
-import FilterControls from './filter-controls';
+import FilterControls from '../tools/filter-controls';
+import { usePostTypes } from '../tools/utils';
 
 const TEMPLATE = [
-	[ 'lsedu-plus/lesson-list-header', {} ],
-	[ 'lsedu-plus/lesson-list', {} ],
+	['lsedu-plus/lesson-list-header', {}],
+	['lsedu-plus/lesson-list', {}],
 ];
 
 // Edit
 
-export default function Edit( props ) {
+export default function Edit(props) {
 	const { attributes, setAttributes, context } = props;
-	const { orderBy, order, taxonomyList, inherit } = attributes;
-	const { postId } = context;
+	const { postType, orderBy, order, inherit, setTaxonomy } = attributes;
+	const { postTypesTaxonomiesMap, postTypesSelectOptions } = usePostTypes();
 
-	// console.log( inherit );
+	const { taxList } = useSelect(
+		(select) => {
+			const { getEntityRecords } = select(coreStore);
+			return {
+				taxList: getEntityRecords('taxonomy', setTaxonomy.taxType, {
+					per_page: -1,
+					context: 'view',
+				}),
+			};
+		},
+		[setTaxonomy]
+	);
 
-	const {
-		categoriesList,
-		areasList,
-		intensitiesList,
-		levelsList,
-		durationsList,
-	} = useSelect( ( select ) => {
-		const { getEntityRecords } = select( coreStore );
-		return {
-			categoriesList: getEntityRecords( 'taxonomy', 'category', {
-				per_page: -1,
-				context: 'view',
-			} ),
-			areasList: getEntityRecords( 'taxonomy', 'area', {
-				per_page: -1,
-				context: 'view',
-			} ),
-			intensitiesList: getEntityRecords( 'taxonomy', 'intensity', {
-				per_page: -1,
-				context: 'view',
-			} ),
-			levelsList: getEntityRecords( 'taxonomy', 'level', {
-				per_page: -1,
-				context: 'view',
-			} ),
-			durationsList: getEntityRecords( 'taxonomy', 'duration', {
-				per_page: -1,
-				context: 'view',
-			} ),
-		};
-	}, [] );
+	const blockProps = useBlockProps({
+		className: classnames('lsedup-lesson-list__container'),
+	});
 
-	const blockProps = useBlockProps( {
-		className: classnames( 'lsedup-lesson-list__container' ),
-	} );
+	const taxonomyTypesSelectOptions = () =>
+		(postTypesTaxonomiesMap[postType] || []).map(
+			(tax) => ({
+				label: tax,
+				value: tax,
+			}),
+			[postTypesTaxonomiesMap]
+		);
 
-	// const onTaxTypeChange = ( value ) => {
-	// 	const tempObj = { ...taxonomyList };
-	// 	tempObj.taxType = value;
-	// 	setAttributes( { taxonomyList: tempObj } );
-	// };
-
-	const onAreaChange = ( value ) => {
-		const tempObj = { ...taxonomyList };
-		tempObj.area = value;
-		setAttributes( { taxonomyList: tempObj } );
+	const onTaxTypeChange = (value) => {
+		const tempObj = { ...setTaxonomy };
+		tempObj.taxType = value;
+		setAttributes({ setTaxonomy: tempObj });
 	};
 
-	// const onCategoryChange = ( value ) => {
-	// 	const tempObj = { ...taxonomyList };
-	// 	tempObj.category = value;
-	// 	setAttributes( { taxonomyList: tempObj } );
-	// };
-
-	// const onIntensityChange = ( value ) => {
-	// 	const tempObj = { ...taxonomyList };
-	// 	tempObj.intensity = value;
-	// 	setAttributes( { taxonomyList: tempObj } );
-	// };
-
-	// const onLevelChange = ( value ) => {
-	// 	const tempObj = { ...taxonomyList };
-	// 	tempObj.level = value;
-	// 	setAttributes( { taxonomyList: tempObj } );
-	// };
-
-	// const onDurationChange = ( value ) => {
-	// 	const tempObj = { ...taxonomyList };
-	// 	tempObj.duration = value;
-	// 	setAttributes( { taxonomyList: tempObj } );
-	// };
+	const onTaxChange = (value) => {
+		const tempObj = { ...setTaxonomy };
+		tempObj.taxSelect = value;
+		setAttributes({ setTaxonomy: tempObj });
+	};
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings', 'lsedu-plus' ) }>
-					<QueryControls
-						orderBy={ orderBy }
-						onOrderByChange={ ( orderBy ) => {
-							setAttributes( { orderBy } );
-						} }
-						order={ order }
-						onOrderChange={ ( order ) => {
-							setAttributes( { order } );
-						} }
-					/>
-				</PanelBody>
-				<PanelBody title={ __( 'Filters', 'ls-studio-blocks' ) }>
+				<PanelBody title={__('Settings', 'lsedu-plus')}>
 					<ToggleControl
-						label={ __(
-							'Inherit query from template',
-							'lsedu-plus'
-						) }
-						help={ __(
+						label={__('Inherit query from template', 'lsedu-plus')}
+						help={__(
 							'Toggle to use the global query context that is set with the current template, such as an archive or search. Disable to customize the settings independently.'
-						) }
-						checked={ inherit }
-						onChange={ ( value ) =>
-							setAttributes( { inherit: !! value } )
+						)}
+						checked={inherit}
+						onChange={(value) =>
+							setAttributes({ inherit: !!value })
 						}
 					/>
-					{ /* <SelectControl
-						label={ __( 'Set Title', 'lsedu-plus' ) }
-						value={ taxonomyList.taxType }
-						options={ [
-							{ label: __( 'none', 'lsedu-plus' ), value: '' },
-							{
-								label: __( 'Area', 'lsedu-plus' ),
-								value: 'area',
-							},
-							{
-								label: __( 'Category', 'lsedu-plus' ),
-								value: 'category',
-							},
-							{
-								label: __( 'Intensity', 'lsedu-plus' ),
-								value: 'intensity',
-							},
-							{
-								label: __( 'Level', 'lsedu-plus' ),
-								value: 'level',
-							},
-							{
-								label: __( 'Duration', 'lsedu-plus' ),
-								value: 'duration',
-							},
-						] }
-						onChange={ onTaxTypeChange }
-					/> */ }
-					<FilterControls
-						label={ __( 'Area', 'lsedu-plus' ) }
-						categoriesList={ areasList }
-						selectedCategoryId={ taxonomyList.area }
-						onCategoryChange={ onAreaChange }
-					/>
-					{ /* <FilterControls
-						label={ __( 'Category', 'lsedu-plus' ) }
-						categoriesList={ categoriesList }
-						selectedCategoryId={ taxonomyList.category }
-						onCategoryChange={ onCategoryChange }
-					/>
-					<FilterControls
-						label={ __( 'Intensity', 'lsedu-plus' ) }
-						categoriesList={ intensitiesList }
-						selectedCategoryId={ taxonomyList.intensity }
-						onCategoryChange={ onIntensityChange }
-					/>
-					<FilterControls
-						label={ __( 'Level', 'lsedu-plus' ) }
-						categoriesList={ levelsList }
-						selectedCategoryId={ taxonomyList.level }
-						onCategoryChange={ onLevelChange }
-					/>
-					<FilterControls
-						label={ __( 'Duration', 'lsedu-plus' ) }
-						categoriesList={ durationsList }
-						selectedCategoryId={ taxonomyList.duration }
-						onCategoryChange={ onDurationChange }
-					/> */ }
+					{!inherit && (
+						<>
+							{postTypesSelectOptions && (
+								<SelectControl
+									label={__('Post type', 'lsedu-plus')}
+									value={postType}
+									options={postTypesSelectOptions}
+									onChange={(postType) =>
+										setAttributes({ postType })
+									}
+									help={__(
+										'WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.',
+										'lsedu-plus'
+									)}
+								/>
+							)}
+							<QueryControls
+								orderBy={orderBy}
+								onOrderByChange={(orderBy) => {
+									setAttributes({ orderBy });
+								}}
+								order={order}
+								onOrderChange={(order) => {
+									setAttributes({ order });
+								}}
+							/>
+						</>
+					)}
 				</PanelBody>
+				{!inherit && (
+					<PanelBody title={__('Filters', 'ls-studio-blocks')}>
+						{postTypesTaxonomiesMap && (
+							<SelectControl
+								label={__('Taxonomy', 'lsedu-plus')}
+								options={taxonomyTypesSelectOptions()}
+								value={setTaxonomy.taxType}
+								onChange={onTaxTypeChange}
+								help={__(
+									'WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.',
+									'lsedu-plus'
+								)}
+							/>
+						)}
+						{taxList && (
+							<FilterControls
+								label={setTaxonomy.taxType}
+								categoriesList={taxList}
+								selectedCategoryId={setTaxonomy.taxSelect}
+								onCategoryChange={onTaxChange}
+							/>
+						)}
+					</PanelBody>
+				)}
 			</InspectorControls>
-			<div { ...blockProps }>
-				<InnerBlocks template={ TEMPLATE } orientation="horizontal" />
+			<div {...blockProps}>
+				<InnerBlocks template={TEMPLATE} orientation="horizontal" />
 			</div>
 		</>
 	);

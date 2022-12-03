@@ -1,11 +1,11 @@
 <?php
 
 function lsedup_lesson_list_header_title_render_cb($attributes, $content, $block){
-	$taxonomy_list = $block->context['taxonomyList'];
+	$set_taxonomy = $block->context['setTaxonomy'];
 	$is_title_set_active = $attributes['isTitleSettingActive'];
 	$titleInactive = isset($attributes['titleInactive'] ) && !empty($attributes['titleInactive']) ? $attributes['titleInactive'] : '';
-	$term_id = intval($taxonomy_list[$taxonomy_list['taxType']]);
-	$tax_type =  $taxonomy_list['taxType'];
+	$term_id = intval($set_taxonomy['taxSelect']);
+	$tax_type =  $set_taxonomy['taxType'];
 	$term = get_term($term_id, $tax_type);
 	$title = !is_wp_error($term) && !empty($term->name) ? $term->name : '';;
 	$term_link = get_term_link($term_id, $tax_type);

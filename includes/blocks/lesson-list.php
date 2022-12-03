@@ -2,18 +2,10 @@
 
 function lsedup_lesson_list_render_cb($attributes, $content, $block){
 	global $wp_query;
-	$taxonomy_list = $block->context['taxonomyList'];
+	$set_taxonomy = $block->context['setTaxonomy'];
 	$use_global_query = ( isset( $block->context['inherit'] ) && $block->context['inherit'] );
-	$area_id = (isset($taxonomy_list['area']) && !empty($taxonomy_list['area'])) ? intval($taxonomy_list['area']) : intval('');
-	$area_operator = (isset($taxonomy_list['area']) && !empty($taxonomy_list['area'])) ? 'IN' : 'NOT IN';
-	$category_id = (isset($taxonomy_list['category']) && !empty($taxonomy_list['category'])) ? intval($taxonomy_list['category']) : intval('');
-	$category_operator = (isset($taxonomy_list['category']) && !empty($taxonomy_list['category'])) ? 'IN' : 'NOT IN';
-	$intensity_id = (isset($taxonomy_list['intensity']) && !empty($taxonomy_list['intensity'])) ? intval($taxonomy_list['intensity']) : intval('');
-	$intensity_operator = (isset($taxonomy_list['intensity']) && !empty($taxonomy_list['intensity'])) ? 'IN' : 'NOT IN';
-	$level_id = (isset($taxonomy_list['level']) && !empty($taxonomy_list['level'])) ? intval($taxonomy_list['level']) : intval('');
-	$level_operator = (isset($taxonomy_list['level']) && !empty($taxonomy_list['level'])) ? 'IN' : 'NOT IN';
-	$duration_id = (isset($taxonomy_list['duration']) && !empty($taxonomy_list['duration'])) ? intval($taxonomy_list['duration']) : intval('');
-	$duration_operator = (isset($taxonomy_list['duration']) && !empty($taxonomy_list['duration'])) ? 'IN' : 'NOT IN';
+	$tax_id = (isset($set_taxonomy['taxSelect']) && !empty($set_taxonomy['taxSelect'])) ? intval($set_taxonomy['taxSelect']) : intval('');
+	$tax_operator = (isset($set_taxonomy['taxSelect']) && !empty($set_taxonomy['taxSelect'])) ? 'IN' : 'NOT IN';
 	$query_args = array(
 		'post_type'	=> $block->context['postType'],
 		'post_status' => 'publish',
@@ -22,37 +14,12 @@ function lsedup_lesson_list_render_cb($attributes, $content, $block){
 		'posts_per_page' => -1,
 		'post_parent'	=> 0,
 		'tax_query' => array(
-			'relation' => 'AND',
 			array(
-				'taxonomy' => 'area',
+				'taxonomy' => $set_taxonomy['taxType'],
 				'field' => 'term_id',
-				'terms' => $area_id,
-				'operator' => $area_operator,
+				'terms' => $tax_id,
+				'operator' => $tax_operator,
 			),
-			array(
-				'taxonomy' => 'category',
-				'field' => 'term_id',
-				'terms' => $category_id,
-				'operator' => $category_operator,
-			),
-			array(
-				'taxonomy' => 'intensity',
-				'field' => 'term_id',
-				'terms' => $intensity_id,
-				'operator' => $intensity_operator,
-			),
-			array(
-				'taxonomy' => 'level',
-				'field' => 'term_id',
-				'terms' => $level_id,
-				'operator' => $level_operator,
-			),
-			array(
-				'taxonomy' => 'duration',
-				'field' => 'term_id',
-				'terms' => $duration_id,
-				'operator' => $duration_operator,
-			)
 		)
 	);
 	if($use_global_query){

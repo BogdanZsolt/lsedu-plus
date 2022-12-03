@@ -56,7 +56,7 @@
 			"padding": true
 		}
 	},
-	"usesContext": [ "postId", "postType", "taxonomyList" ],
+	"usesContext": [ "postId", "postType", "taxonomyList", "setTaxonomy" ],
 	"textdomain": "lsedu-plus",
 	"editorScript": "file:./index.js",
 	"style": "file:./index.css"

@@ -18,9 +18,9 @@ import block from './block.json';
 // Import the logo
 import { ReactComponent as Logo } from '../../logo-01.svg';
 
-registerBlockType( block.name, {
+registerBlockType(block.name, {
 	icon: { src: Logo },
-	edit( { attributes, setAttributes, context } ) {
+	edit({ attributes, setAttributes, context }) {
 		const {
 			titleInactive,
 			isTitleSettingActive,
@@ -30,118 +30,104 @@ registerBlockType( block.name, {
 			textAlign,
 			linkTarget,
 		} = attributes;
-		const { taxonomyList } = context;
-		const blockProps = useBlockProps( {
-			className: classnames( {
+		const { setTaxonomy } = context;
+		const blockProps = useBlockProps({
+			className: classnames({
 				'lsedup-lesson-list__header-title': true,
-				[ `has-text-align-${ textAlign }` ]: textAlign,
-			} ),
-		} );
-		const TagName = 0 === level ? 'p' : `h${ level }`;
+				[`has-text-align-${textAlign}`]: textAlign,
+			}),
+		});
+		const TagName = 0 === level ? 'p' : `h${level}`;
 		let title = '';
 		let link = '';
 
-		console.log( taxonomyList );
-		// console.log(
-		// 	'level: ',
-		// 	level,
-		// 	' TagName: ',
-		// 	TagName,
-		// 	' titleInactive: ',
-		// 	titleInactive,
-		// 	' titleSettingActve: ',
-		// 	isTitleSettingActive
-		// );
+		const { list, isLoading } = useSelect(
+			(select) => {
+				const { getEntityRecords, isResolving } = select(coreStore);
+				const catId = [];
+				const taxId =
+					setTaxonomy && setTaxonomy.taxSelect
+						? setTaxonomy.taxSelect
+						: '';
+				catId[0] = Number(taxId);
+				const taxonomyArgs = [
+					'taxonomy',
+					setTaxonomy.taxType,
+					{
+						include: catId,
+					},
+				];
 
-		// console.warn( 'edit', title );
+				return {
+					list: getEntityRecords(...taxonomyArgs),
+					isLoading: isResolving('getEntityRecords', 'taxonomyArgs'),
+				};
+			},
+			[setTaxonomy]
+		);
 
-		const { list, isLoading } = useSelect( ( select ) => {
-			const { getEntityRecords, isResolving } = select( coreStore );
-			const catId = [];
-			const taxId =
-				taxonomyList.taxType !== undefined &&
-				taxonomyList[ taxonomyList.taxType ] !== undefined
-					? taxonomyList[ taxonomyList.taxType ]
-					: '';
-			catId[ 0 ] = Number( taxId );
-			const taxonomyArgs = [
-				'taxonomy',
-				taxonomyList.taxType,
-				{
-					include: catId,
-				},
-			];
-
-			return {
-				list: getEntityRecords( ...taxonomyArgs ),
-				isLoading: isResolving( 'getEntityRecords', 'taxonomyArgs' ),
-			};
-		} );
-
-		if ( ! isLoading ) {
-			if ( isTitleSettingActive ) {
-				title = list && list.length > 0 ? list[ 0 ].name : '';
+		if (!isLoading) {
+			if (isTitleSettingActive) {
+				title = list && list.length > 0 ? list[0].name : '';
 			} else {
 				title =
 					titleInactive && titleInactive.length > 0
 						? titleInactive
 						: '';
-				setAttributes( { titleInactive: title } );
+				setAttributes({ titleInactive: title });
 			}
-			link = list && list.length > 0 ? list[ 0 ].link : '#';
+			link = list && list.length > 0 ? list[0].link : '#';
 		}
 
 		const TitleElement = () => {
-			if ( isLink ) {
+			if (isLink) {
 				return (
-					<TagName { ...blockProps }>
-						{ isTitleSettingActive && (
+					<TagName {...blockProps}>
+						{isTitleSettingActive && (
 							<a
-								href={ link }
-								target={ linkTarget }
-								onClick={ ( event ) => event.preventDefault() }
+								href={link}
+								target={linkTarget}
+								onClick={(event) => event.preventDefault()}
 							>
-								{ title }
+								{title}
 							</a>
-						) }
-						{ ! isTitleSettingActive && (
+						)}
+						{!isTitleSettingActive && (
 							<RichText
 								tagName="a"
-								href={ link }
-								target={ linkTarget }
-								value={ title }
+								href={link}
+								target={linkTarget}
+								value={title}
 								withoutInteractiveFormatting
-								onChange={ ( title ) =>
-									setAttributes( { title } )
-								}
+								onChange={(title) => setAttributes({ title })}
 								placeholder={
 									title && title === ''
-										? __( 'Title', 'lsedu-plus' )
+										? __('Title', 'lsedu-plus')
 										: title
 								}
 							/>
-						) }
+						)}
 					</TagName>
 				);
 			} else {
-				if ( isTitleSettingActive ) {
+				if (isTitleSettingActive) {
 					return (
 						<TagName
-							{ ...blockProps }
-							dangerouslySetInnerHTML={ { __html: title } }
+							{...blockProps}
+							dangerouslySetInnerHTML={{ __html: title }}
 						/>
 					);
 				} else {
 					return (
 						<RichText
-							{ ...blockProps }
-							tagName={ TagName }
-							value={ title }
+							{...blockProps}
+							tagName={TagName}
+							value={title}
 							withoutInteractiveFormatting
-							onChange={ ( title ) => setAttributes( { title } ) }
+							onChange={(title) => setAttributes({ title })}
 							placeholder={
 								title && title === ''
-									? __( 'Title', 'lsedu-plus' )
+									? __('Title', 'lsedu-plus')
 									: title
 							}
 						/>
@@ -156,67 +142,56 @@ registerBlockType( block.name, {
 			<>
 				<BlockControls group="block">
 					<HeadingLevelDropdown
-						selectedLevel={ level }
-						onChange={ ( newLevel ) =>
-							setAttributes( { level: newLevel } )
+						selectedLevel={level}
+						onChange={(newLevel) =>
+							setAttributes({ level: newLevel })
 						}
 					/>
 					<AlignmentControl
-						value={ textAlign }
-						onChange={ ( textAlign ) => {
-							setAttributes( { textAlign } );
-						} }
+						value={textAlign}
+						onChange={(textAlign) => {
+							setAttributes({ textAlign });
+						}}
 					/>
 				</BlockControls>
 				<InspectorControls>
-					<PanelBody title={ __( 'title Setting', 'lsedu-plus' ) }>
+					<PanelBody title={__('title Setting', 'lsedu-plus')}>
 						<ToggleControl
-							label={ __(
-								'Activate title setting',
-								'lsedu-plus'
-							) }
-							onChange={ () =>
-								setAttributes( {
-									isTitleSettingActive:
-										! isTitleSettingActive,
-								} )
+							label={__('Activate title setting', 'lsedu-plus')}
+							onChange={() =>
+								setAttributes({
+									isTitleSettingActive: !isTitleSettingActive,
+								})
 							}
-							checked={ isTitleSettingActive }
+							checked={isTitleSettingActive}
 						/>
 					</PanelBody>
-					<PanelBody title={ __( 'Link settings', 'lsedu-plus' ) }>
+					<PanelBody title={__('Link settings', 'lsedu-plus')}>
 						<ToggleControl
-							label={ __( 'Make title a link', 'lsedu-plus' ) }
-							onChange={ () =>
-								setAttributes( { isLink: ! isLink } )
-							}
-							checked={ isLink }
+							label={__('Make title a link', 'lsedu-plus')}
+							onChange={() => setAttributes({ isLink: !isLink })}
+							checked={isLink}
 						/>
-						{ isLink && (
+						{isLink && (
 							<>
 								<ToggleControl
-									label={ __(
-										'Open in new tab',
-										'lsedu-plus'
-									) }
-									onChange={ ( value ) =>
-										setAttributes( {
+									label={__('Open in new tab', 'lsedu-plus')}
+									onChange={(value) =>
+										setAttributes({
 											linkTarget: value
 												? '_blank'
 												: '_self',
-										} )
+										})
 									}
-									checked={ linkTarget === '_blank' }
+									checked={linkTarget === '_blank'}
 								/>
 								<TextControl
-									label={ __( 'Link rel' ) }
-									value={ rel }
-									onChange={ ( rel ) =>
-										setAttributes( { rel } )
-									}
+									label={__('Link rel')}
+									value={rel}
+									onChange={(rel) => setAttributes({ rel })}
 								/>
 							</>
-						) }
+						)}
 					</PanelBody>
 				</InspectorControls>
 				<TitleElement />
@@ -227,4 +202,4 @@ registerBlockType( block.name, {
 	save() {
 		return null;
 	},
-} );
+});

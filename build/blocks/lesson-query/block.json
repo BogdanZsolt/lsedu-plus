@@ -23,15 +23,11 @@
       "type": "boolean",
       "default": false
     },
-    "taxonomyList": {
+    "setTaxonomy": {
       "type": "object",
       "default": {
-        "area": "",
-        "category": "",
-        "intensity": "",
-        "level": "",
-        "duration": "",
-        "taxType": ""
+        "taxSelect": "",
+        "taxType": "area"
       }
     }
   },
@@ -56,8 +52,8 @@
     "postType": "postType",
     "order": "order",
     "orderBy": "orderBy",
-    "taxonomyList": "taxonomyList",
-    "inherit": "inherit"
+    "inherit": "inherit",
+    "setTaxonomy": "setTaxonomy"
   },
   "usesContext": [
     "postId"

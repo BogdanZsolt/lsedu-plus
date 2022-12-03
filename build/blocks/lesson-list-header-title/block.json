@@ -64,7 +64,8 @@
   "usesContext": [
     "postId",
     "postType",
-    "taxonomyList"
+    "taxonomyList",
+    "setTaxonomy"
   ],
   "textdomain": "lsedu-plus",
   "editorScript": "file:./index.js",

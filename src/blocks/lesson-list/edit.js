@@ -18,56 +18,31 @@ import {
 	ToolbarGroup,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { list, grid, category } from '@wordpress/icons';
+import { list, grid } from '@wordpress/icons';
 import classnames from 'classnames';
 
 const TEMPLATE = [
-	[ 'core/post-featured-image', { sizeSlug: 'videoPlaceholderImage' } ],
-	[ 'lsedu-plus/lesson-title', { level: 4 } ],
+	['core/post-featured-image', { sizeSlug: 'videoPlaceholderImage' }],
+	['lsedu-plus/lesson-title', { level: 4 }],
 ];
 
 // Edit
 
-export default function Edit( props ) {
+export default function Edit(props) {
 	const { clientId, attributes, setAttributes, context } = props;
 	const { isSlider, columns, displayLayout } = attributes;
 
-	const { postType, order, orderBy, taxonomyList } = context;
+	const { postType, order, orderBy, setTaxonomy } = context;
 
-	const [ activeBlockContextId, setActiveBlockContextId ] = useState();
+	const [activeBlockContextId, setActiveBlockContextId] = useState();
 
 	const { posts, blocks } = useSelect(
-		( select ) => {
-			const { getEntityRecords } = select( coreStore );
-			const { getBlocks } = select( blockEditorStore );
-			const catId = [];
-			if (
-				taxonomyList.category &&
-				taxonomyList.category !== undefined
-			) {
-				catId[ 0 ] = Number( taxonomyList.category );
-			}
-			const areaId = [];
-			if ( taxonomyList.area && taxonomyList.area !== undefined ) {
-				areaId[ 0 ] = Number( taxonomyList.area );
-			}
-			const intensityId = [];
-			if (
-				taxonomyList.intensity &&
-				taxonomyList.intensity !== undefined
-			) {
-				intensityId[ 0 ] = Number( taxonomyList.intensity );
-			}
-			const levelId = [];
-			if ( taxonomyList.level && taxonomyList.level !== undefined ) {
-				levelId[ 0 ] = Number( taxonomyList.level );
-			}
-			const durationId = [];
-			if (
-				taxonomyList.duration &&
-				taxonomyList.duration !== undefined
-			) {
-				durationId[ 0 ] = Number( taxonomyList.duration );
+		(select) => {
+			const { getEntityRecords } = select(coreStore);
+			const { getBlocks } = select(blockEditorStore);
+			const taxId = [];
+			if (setTaxonomy.taxSelect && setTaxonomy.taxSelect !== undefined) {
+				taxId[0] = Number(setTaxonomy.taxSelect);
 			}
 			const query = {
 				per_page: -1,
@@ -75,37 +50,37 @@ export default function Edit( props ) {
 				order,
 				orderby: orderBy,
 				parent: 0,
-				area: areaId,
-				categories: catId,
-				intensity: intensityId,
-				level: levelId,
-				duration: durationId,
 			};
+			if (setTaxonomy.taxType === 'category') {
+				query['categories'] = taxId;
+			} else {
+				query[setTaxonomy.taxType] = taxId;
+			}
 			return {
-				posts: getEntityRecords( 'postType', postType, query ),
-				blocks: getBlocks( clientId ),
+				posts: getEntityRecords('postType', postType, query),
+				blocks: getBlocks(clientId),
 			};
 		},
-		[ order, orderBy, clientId, taxonomyList ]
+		[order, orderBy, clientId, setTaxonomy]
 	);
 
-	function PostTemplateBlockPreview( {
+	function PostTemplateBlockPreview({
 		blocks,
 		blockContextId,
 		isHidden,
 		setActiveBlockContextId,
-	} ) {
-		const blockPreviewProps = useBlockPreview( {
+	}) {
+		const blockPreviewProps = useBlockPreview({
 			blocks,
 			props: {
-				className: classnames( {
+				className: classnames({
 					'wp-block-post': true,
-				} ),
+				}),
 			},
-		} );
+		});
 
 		const handleOnClick = () => {
-			setActiveBlockContextId( blockContextId );
+			setActiveBlockContextId(blockContextId);
 		};
 
 		const style = {
@@ -114,13 +89,13 @@ export default function Edit( props ) {
 
 		return (
 			<div
-				{ ...blockPreviewProps }
-				tabIndex={ 0 }
+				{...blockPreviewProps}
+				tabIndex={0}
 				// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 				role="button"
-				onClick={ handleOnClick }
-				onKeyPress={ handleOnClick }
-				style={ style }
+				onClick={handleOnClick}
+				onKeyPress={handleOnClick}
+				style={style}
 			/>
 		);
 	}
@@ -128,67 +103,61 @@ export default function Edit( props ) {
 	const PostTemplateInnerBlocks = () => {
 		const innerBlocksProps = useInnerBlocksProps(
 			{
-				className: classnames( {
+				className: classnames({
 					'wp-block-post': true,
-				} ),
+				}),
 			},
 			{ template: TEMPLATE },
 			{ renderAppender: false }
 		);
-		return <div { ...innerBlocksProps } />;
+		return <div {...innerBlocksProps} />;
 	};
 
-	const MemoizedPostTemplateBlockPreview = memo( PostTemplateBlockPreview );
+	const MemoizedPostTemplateBlockPreview = memo(PostTemplateBlockPreview);
 
 	const blockContexts = useMemo(
 		() =>
-			posts?.map( ( post ) => ( {
+			posts?.map((post) => ({
 				postType: post.type,
 				postId: post.id,
-			} ) ),
-		[ posts ]
+			})),
+		[posts]
 	);
 
-	const blockProps = useBlockProps( {
-		className: classnames( {
+	const blockProps = useBlockProps({
+		className: classnames({
 			swiper: isSlider,
 			'lsedup-lesson-list': true,
 			isSlider: isSlider,
-			'is-flex-container': displayLayout === 'flex' && ! isSlider,
-			[ `has-columns-${ columns }` ]:
-				displayLayout === 'flex' || isSlider,
+			'is-flex-container': displayLayout === 'flex' && !isSlider,
+			[`has-columns-${columns}`]: displayLayout === 'flex' || isSlider,
 			'is-list-container': displayLayout === 'list',
-		} ),
-	} );
+		}),
+	});
 
-	if ( ! posts ) {
+	if (!posts) {
 		return (
-			<p { ...blockProps }>
+			<p {...blockProps}>
 				<Spinner />
 			</p>
 		);
 	}
 
-	if ( ! posts.length ) {
-		return (
-			<p { ...blockProps }>
-				{ ' ' }
-				{ __( 'No results found.', 'lsedu-plus' ) }
-			</p>
-		);
+	if (!posts.length) {
+		return <p {...blockProps}> {__('No results found.', 'lsedu-plus')}</p>;
 	}
 
 	const layoutControls = [
 		{
 			icon: list,
-			title: __( 'List view', 'lsedu-plus' ),
-			onClick: () => setAttributes( { displayLayout: 'list' } ),
+			title: __('List view', 'lsedu-plus'),
+			onClick: () => setAttributes({ displayLayout: 'list' }),
 			isActive: displayLayout === 'list',
 		},
 		{
 			icon: grid,
-			title: __( 'Grid view', 'lsedu-plus' ),
-			onClick: () => setAttributes( { displayLayout: 'flex' } ),
+			title: __('Grid view', 'lsedu-plus'),
+			onClick: () => setAttributes({ displayLayout: 'flex' }),
 			isActive: displayLayout === 'flex',
 		},
 	];
@@ -196,71 +165,67 @@ export default function Edit( props ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings', 'lsedu-plus' ) }>
+				<PanelBody title={__('Settings', 'lsedu-plus')}>
 					<ToggleControl
-						label={ __( 'Slider', 'lsedu-plus' ) }
-						onChange={ () =>
-							setAttributes( { isSlider: ! isSlider } )
-						}
+						label={__('Slider', 'lsedu-plus')}
+						onChange={() => setAttributes({ isSlider: !isSlider })}
 						help={
 							isSlider
-								? __( 'List slider on', 'lsedu-plus' )
-								: __( 'List slider off', 'lsedu-plus' )
+								? __('List slider on', 'lsedu-plus')
+								: __('List slider off', 'lsedu-plus')
 						}
-						checked={ isSlider }
+						checked={isSlider}
 					/>
-					{ displayLayout === 'flex' && ! isSlider && (
+					{displayLayout === 'flex' && !isSlider && (
 						<RangeControl
-							label={ __( 'Columns', 'lsedu-plus' ) }
-							min={ 2 }
-							max={ 6 }
-							onChange={ ( columns ) =>
-								setAttributes( { columns } )
-							}
-							value={ columns }
+							label={__('Columns', 'lsedu-plus')}
+							min={2}
+							max={6}
+							onChange={(columns) => setAttributes({ columns })}
+							value={columns}
 						/>
-					) }
+					)}
 				</PanelBody>
 			</InspectorControls>
-			{ ! isSlider && (
+			{!isSlider && (
 				<BlockControls>
-					<ToolbarGroup controls={ layoutControls } />
+					<ToolbarGroup controls={layoutControls} />
 				</BlockControls>
-			) }
-			{ blockContexts && (
-				<div { ...blockProps }>
-					{ isSlider && (
+			)}
+			{blockContexts && (
+				<div {...blockProps}>
+					{isSlider && (
 						<>
 							<div className="lsedup-lesson-list__prev"></div>
 							<div className="lsedup-lesson-list__next"></div>
 						</>
-					) }
-					{ blockContexts.map( ( blockContext ) => (
+					)}
+					{blockContexts.map((blockContext) => (
 						<BlockContextProvider
-							key={ blockContext.postId }
-							value={ blockContext }
+							key={blockContext.postId}
+							value={blockContext}
 						>
-							{ blockContext.postId ===
-							( activeBlockContextId ||
-								blockContexts[ 0 ]?.postId ) ? (
+							{blockContext.postId ===
+							(activeBlockContextId ||
+								blockContexts[0]?.postId) ? (
 								<PostTemplateInnerBlocks />
-							) : null }
+							) : null}
 							<MemoizedPostTemplateBlockPreview
-								blocks={ blocks }
-								blockContextId={ blockContext.postId }
+								blocks={blocks}
+								blockContextId={blockContext.postId}
 								setActiveBlockContextId={
 									setActiveBlockContextId
 								}
 								isHidden={
 									blockContext.postId ===
-									( activeBlockContextId ||
-										blockContexts[ 0 ]?.postId )
+									(activeBlockContextId ||
+										blockContexts[0]?.postId)
 								}
 							/>
 						</BlockContextProvider>
-					) ) }
+					))}
 				</div>
-			) }
+			)}
 		</>
 	);
 }
