@@ -136,8 +136,6 @@ registerBlockType(block.name, {
 			}
 		};
 
-		// console.log( title );
-
 		return (
 			<>
 				<BlockControls group="block">

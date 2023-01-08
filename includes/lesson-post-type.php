@@ -203,12 +203,39 @@ function lsedup_lesson_post_type(){
 		'default' => 0,
 	]);
 
-	register_post_meta('lesson', 'video_src', [
-		'type' => 'string',
-		'description' => __('The lesson\'s video source link.', 'lsedu-plus'),
+	// register_post_meta('lesson', 'video_src', [
+	// 	'type' => 'string',
+	// 	'description' => __('The lesson\'s video source link.', 'lsedu-plus'),
+	// 	'single' => true,
+	// 	'show_in_rest' => true,
+	// 	'sanitize_callback' => 'esc_url_raw',
+	// 	'auth_callback' => function(){
+	// 		return current_user_can( 'edit_posts' );
+	// 	}
+	// ]);
+
+	register_post_meta('lesson', 'video_data', [
+		'type' => 'object',
+		'description' => __('The lesson\'s video data.', 'lsedu-plus'),
 		'single' => true,
-		'show_in_rest' => true,
-		'sanitize_callback' => 'esc_url_raw',
+		'show_in_rest' => array(
+			'schema' => array(
+				'type' => 'object',
+				'properties' => array(
+					'video_src' => array(
+						'type' => 'string',
+						'sanitize_callback' => 'esc_url_raw',
+ 					),
+					'provider' => array(
+						'type' => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'responsive' => array(
+						'type' => 'boolean',
+					),
+				),
+			),
+		),
 		'auth_callback' => function(){
 			return current_user_can( 'edit_posts' );
 		}

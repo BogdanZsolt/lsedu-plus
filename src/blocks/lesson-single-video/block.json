@@ -1,0 +1,46 @@
+{
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+	"apiVersion": 2,
+	"name": "lsedu-plus/lesson-single-video",
+	"title": "Lesson Single Video",
+	"category": "la-saphire",
+	"description": "Adds a lesson single section for a lesson",
+	"textdomain": "lsedu-plus",
+	"attributes": {
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"controls": {
+			"type": "boolean",
+			"default": true
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"muted": {
+			"type": "boolean",
+			"default": false
+		},
+		"download": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"color": {
+			"background": true,
+			"gradients": true
+		},
+		"html": false,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"usesContext": ["postId", "order", "orderBy"],
+	"editorScript": "file:./index.js",
+	"style": "file:./index.css",
+	"script": "file:./frontend.js"
+}

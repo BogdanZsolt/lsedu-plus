@@ -1,0 +1,46 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "lsedu-plus/lesson-single",
+  "title": "Lesson Single",
+  "category": "la-saphire",
+  "description": "Adds a lesson single section for a lesson",
+  "textdomain": "lsedu-plus",
+  "attributes": {
+    "order": {
+      "type": "string",
+      "default": "ASC"
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "title"
+    },
+    "durationTime": {
+      "type": "string"
+    },
+    "course": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "color": {
+      "background": true,
+      "gradients": true
+    },
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "usesContext": [
+    "postType",
+    "postId"
+  ],
+  "providesContext": {
+    "order": "order",
+    "orderBy": "orderBy"
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css"
+}

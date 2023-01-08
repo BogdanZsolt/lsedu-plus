@@ -1,0 +1,74 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/lesson-single-video/main.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+.wp-block-lsedu-plus-lesson-single-video {
+  -webkit-margin-before: 0 !important;
+          margin-block-start: 0 !important;
+  display: none;
+  position: relative;
+}
+.wp-block-lsedu-plus-lesson-single-video.active {
+  display: block;
+}
+.wp-block-lsedu-plus-lesson-single-video video {
+  width: 100%;
+}
+.wp-block-lsedu-plus-lesson-single-video img {
+  width: 100%;
+}
+.wp-block-lsedu-plus-lesson-single-video.paused::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 6%;
+  right: 0;
+  cursor: pointer;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px 40px;
+  background-image: url(data:image/svg+xml;utf8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSIxNzA2LjY2NyIgaGVpZ2h0PSIxNzA2LjY2NyIgdmlld0JveD0iMCAwIDEyODAgMTI4MCI+PHBhdGggZD0iTTE1Ny42MzUgMi45ODRMMTI2MC45NzkgNjQwIDE1Ny42MzUgMTI3Ny4wMTZ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+);
+}
+.wp-block-lsedu-plus-lesson-single-video.ended::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 64px 64px;
+  background-image: url(data:image/svg+xml;utf8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgNTEwIDUxMCI+PHBhdGggZD0iTTI1NSAxMDJWMEwxMjcuNSAxMjcuNSAyNTUgMjU1VjE1M2M4NC4xNSAwIDE1MyA2OC44NSAxNTMgMTUzcy02OC44NSAxNTMtMTUzIDE1My0xNTMtNjguODUtMTUzLTE1M0g1MWMwIDExMi4yIDkxLjggMjA0IDIwNCAyMDRzMjA0LTkxLjggMjA0LTIwNC05MS44LTIwNC0yMDQtMjA0eiIgZmlsbD0iI0ZGRiIvPjwvc3ZnPg==);
+}
+.wp-block-lsedu-plus-lesson-single-video .lsedup-youtube-video-player,
+.wp-block-lsedu-plus-lesson-single-video .lsedup-vimeo-video-player,
+.wp-block-lsedu-plus-lesson-single-video .lsedup-videa-video-player {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.wp-block-lsedu-plus-lesson-single-video iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.responsive::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+/*# sourceMappingURL=index.css.map*/

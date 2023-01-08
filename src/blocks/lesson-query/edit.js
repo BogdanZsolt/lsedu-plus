@@ -80,34 +80,32 @@ export default function Edit(props) {
 							setAttributes({ inherit: !!value })
 						}
 					/>
-					{!inherit && (
-						<>
-							{postTypesSelectOptions && (
-								<SelectControl
-									label={__('Post type', 'lsedu-plus')}
-									value={postType}
-									options={postTypesSelectOptions}
-									onChange={(postType) =>
-										setAttributes({ postType })
-									}
-									help={__(
-										'WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.',
-										'lsedu-plus'
-									)}
-								/>
-							)}
-							<QueryControls
-								orderBy={orderBy}
-								onOrderByChange={(orderBy) => {
-									setAttributes({ orderBy });
-								}}
-								order={order}
-								onOrderChange={(order) => {
-									setAttributes({ order });
-								}}
+					<>
+						{!inherit && postTypesSelectOptions && (
+							<SelectControl
+								label={__('Post type', 'lsedu-plus')}
+								value={postType}
+								options={postTypesSelectOptions}
+								onChange={(postType) =>
+									setAttributes({ postType })
+								}
+								help={__(
+									'WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.',
+									'lsedu-plus'
+								)}
 							/>
-						</>
-					)}
+						)}
+						<QueryControls
+							orderBy={orderBy}
+							onOrderByChange={(orderBy) => {
+								setAttributes({ orderBy });
+							}}
+							order={order}
+							onOrderChange={(order) => {
+								setAttributes({ order });
+							}}
+						/>
+					</>
 				</PanelBody>
 				{!inherit && (
 					<PanelBody title={__('Filters', 'ls-studio-blocks')}>

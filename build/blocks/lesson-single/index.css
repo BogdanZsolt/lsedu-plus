@@ -1,0 +1,18 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/lesson-single/main.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+.wp-block-lsedu-plus-lesson-single {
+  width: 100%;
+}
+
+.wp-block-columns .lsedup-single-lesson-video__wrapper {
+  flex-basis: 70% !important;
+}
+.wp-block-columns .lsedup-single-lesson-video__list-container {
+  flex-basis: 30% !important;
+}
+.wp-block-columns .lsedup-single-lesson-video__list-container.hide {
+  display: none !important;
+}
+
+/*# sourceMappingURL=index.css.map*/

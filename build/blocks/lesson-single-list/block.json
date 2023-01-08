@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "lsedu-plus/lesson-single-list",
+  "title": "Lesson Single List",
+  "category": "la-saphire",
+  "description": "Adds a lesson single list section for a lesson",
+  "textdomain": "lsedu-plus",
+  "attributes": {},
+  "supports": {
+    "color": {
+      "background": true,
+      "gradients": true
+    },
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "usesContext": [
+    "postType",
+    "postId",
+    "order",
+    "orderBy"
+  ],
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css",
+  "script": "file:./frontend.js"
+}

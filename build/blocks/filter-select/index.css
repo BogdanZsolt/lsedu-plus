@@ -1,1 +1,63 @@
-.wp-block-lsedu-plus-filter-select{display:block;margin-top:0!important}.wp-block-lsedu-plus-filter-select .filter{flex:1}.wp-block-lsedu-plus-filter-select .filter-container{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:space-between;margin-left:auto;margin-right:auto;padding-bottom:1rem;padding-top:1rem}.wp-block-lsedu-plus-filter-select select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;background:unset;border:none;cursor:inherit;font-family:inherit;font-size:inherit;line-height:inherit;margin:0;outline:none;padding:0 1em 0 0;width:100%}.wp-block-lsedu-plus-filter-select .select{background-color:#fff;background-image:linear-gradient(0deg,#f9f9f9,#fff 33%);border:1px solid var(--select-border);border-radius:.25rem;cursor:pointer;font-size:1.25rem;line-height:1.1;min-width:100%;padding:.25em .5rem;position:relative;width:100%}.wp-block-lsedu-plus-filter-select .select:after{background-color:var(--select-arrow);-webkit-clip-path:polygon(100% 0,0 0,50% 100%);clip-path:polygon(100% 0,0 0,50% 100%);content:"";display:grid;height:.5rem;position:absolute;right:5px;top:50%;width:.8rem}
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/filter-select/main.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+.wp-block-lsedu-plus-filter-select {
+  margin-top: 0 !important;
+  display: block;
+}
+.wp-block-lsedu-plus-filter-select .filter {
+  flex: 1;
+}
+.wp-block-lsedu-plus-filter-select .filter-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.wp-block-lsedu-plus-filter-select select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  background: unset;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+.wp-block-lsedu-plus-filter-select .select {
+  position: relative;
+  width: 100%;
+  min-width: 100%;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25rem;
+  padding: 0.25em 0.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.wp-block-lsedu-plus-filter-select .select:after {
+  content: "";
+  width: 0.8rem;
+  height: 0.5rem;
+  background-color: var(--select-arrow);
+  -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  display: grid;
+  position: absolute;
+  top: 50%;
+  right: 5px;
+}
+
+/*# sourceMappingURL=index.css.map*/

@@ -15,7 +15,9 @@
     }
   },
   "usesContext": [
-    "postId"
+    "postId",
+    "order",
+    "orderBy"
   ],
   "editorScript": "file:./index.js",
   "style": "file:./index.css",

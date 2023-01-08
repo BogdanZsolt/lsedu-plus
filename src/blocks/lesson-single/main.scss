@@ -1,0 +1,18 @@
+.wp-block-lsedu-plus-lesson-single {
+  width: 100%;
+  // max-width: 1280px !important;
+}
+
+.wp-block-columns {
+  .lsedup-single-lesson-video__wrapper {
+    flex-basis: 70% !important;
+  }
+
+  .lsedup-single-lesson-video__list-container {
+    flex-basis: 30% !important;
+
+    &.hide {
+      display: none !important;
+    }
+  }
+}

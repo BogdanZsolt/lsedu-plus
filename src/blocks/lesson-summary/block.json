@@ -14,7 +14,7 @@
 			"type": "string"
 		}
 	},
-	"usesContext": ["postId"],
+	"usesContext": ["postId", "order", "orderBy"],
 	"editorScript": "file:./index.js",
 	"style": "file:./index.css",
 	"script": "file:./frontend.js"

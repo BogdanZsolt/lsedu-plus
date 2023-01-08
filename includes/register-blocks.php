@@ -32,7 +32,14 @@ function lsedup_register_blocks(){
 			'render_callback' => 'lsedup_lesson_list_header_title_render_cb'
 		]],
 		[ 'name' => 'lesson-query' ],
-		[ 'name' => 'lesson-list-header']
+		[ 'name' => 'lesson-list-header'],
+		[ 'name' => 'lesson-single' ],
+		[ 'name' => 'lesson-single-video', 'options' => [
+			'render_callback' => 'lsedup_lesson_single_video_render_cb'
+		]],
+		[ 'name' => 'lesson-single-list', 'options' => [
+			'render_callback' => 'lsedup_lesson_single_list_render_cb'
+		]]
 	];
 
 	foreach($blocks as $block){

@@ -8,14 +8,14 @@ import block from './block.json';
 // Import the logo
 import { ReactComponent as Logo } from '../../logo-01.svg';
 
-registerBlockType( block.name, {
+registerBlockType(block.name, {
 	icon: { src: Logo },
 	edit() {
-		const blockProps = useBlockProps( {
-			className: classnames( 'lsedup-lesson-list__header' ),
-		} );
+		const blockProps = useBlockProps({
+			className: classnames('lsedup-lesson-list__header'),
+		});
 		const TEMPLATE = [
-			[ 'lsedu-plus/lesson-list-header-title', {} ],
+			['lsedu-plus/lesson-list-header-title', {}],
 			[
 				'lsedu-plus/lesson-list-header-title',
 				{
@@ -26,11 +26,9 @@ registerBlockType( block.name, {
 			],
 		];
 
-		// console.log( listTitle );
-
 		return (
-			<div { ...blockProps }>
-				<InnerBlocks template={ TEMPLATE } />
+			<div {...blockProps}>
+				<InnerBlocks template={TEMPLATE} />
 			</div>
 		);
 	},
@@ -38,9 +36,9 @@ registerBlockType( block.name, {
 		const blockProps = useBlockProps.save();
 
 		return (
-			<div { ...blockProps }>
+			<div {...blockProps}>
 				<InnerBlocks.Content />
 			</div>
 		);
 	},
-} );
+});

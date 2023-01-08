@@ -51,8 +51,9 @@ function lsedup_lesson_summary_render_cb($atts, $content, $block){
     $children = get_children([
       'post_parent' => $postID,
       'fields' => 'ids',
-      'orderby' => 'date',
+      'orderby' => 'title',
       'order' => 'ASC',
+      'post_status' => 'publish',
     ]);
 
   }

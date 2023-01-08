@@ -11,6 +11,13 @@
       "type": "boolean",
       "default": false
     },
+    "sliderScrollerColor": {
+      "type": "object",
+      "default": {
+        "textColor": "#d3d3d3bf",
+        "background": "#ffffff00"
+      }
+    },
     "columns": {
       "type": "number",
       "default": 3

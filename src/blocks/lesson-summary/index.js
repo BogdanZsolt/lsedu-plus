@@ -16,232 +16,222 @@ import block from './block.json';
 import { ReactComponent as Logo } from '../../logo-01.svg';
 import './main.scss';
 
-registerBlockType( block.name, {
+registerBlockType(block.name, {
 	icon: { src: Logo },
-	edit( { attributes, setAttributes, context } ) {
-		const postType = useSelect( ( select ) => {
-			return select( 'core/editor' ).getCurrentPostType();
-		}, [] );
+	edit({ attributes, setAttributes, context }) {
+		const postType = useSelect((select) => {
+			return select('core/editor').getCurrentPostType();
+		}, []);
+		const termCategoryIDs = useSelect((select) => {
+			return select('core/editor').getCurrentPostAttribute('categories');
+		});
 		const { durationTime, course } = attributes;
 		const blockProps = useBlockProps();
-		const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
+		const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
 		const videoSrc = meta.video_src;
-		const { postId } = context;
-		const ALLOWED_MEDIA_TYPES = [ 'video' ];
-		const { authorName } = useSelect(
-			( select ) => {
-				const { getEditedEntityRecord, getUser } = select( coreStore );
-				const _authorId = getEditedEntityRecord(
-					'postType',
-					postType,
-					postId
-				)?.author;
-
-				return {
-					authorName: _authorId ? getUser( _authorId ) : null,
-				};
-			},
-			[ postType, postId ]
-		);
-		const post = useSelect( ( select ) => {
-			return select( 'core' ).getEntityRecords( 'postType', postType, {
-				per_page: -1,
-				_embed: true,
-				orderby: 'date',
-				order: 'asc',
-				parent: 0,
-				status: 'publish',
-			} );
-		} );
-
-		const termCategoryIDs = useSelect( ( select ) => {
-			return select( 'core/editor' ).getCurrentPostAttribute(
-				'categories'
-			);
-		}, [] );
-
-		const [ termAreaIDs ] = useEntityProp(
+		const { postId, order, orderBy } = context;
+		const ALLOWED_MEDIA_TYPES = ['video'];
+		const [termAreaIDs] = useEntityProp(
 			'postType',
 			postType,
 			'area',
 			postId
 		);
-
-		const [ termIntensityIDs ] = useEntityProp(
+		const [termIntensityIDs] = useEntityProp(
 			'postType',
 			postType,
 			'intensity',
 			postId
 		);
-
-		const [ termLevelIDs ] = useEntityProp(
+		const [termLevelIDs] = useEntityProp(
 			'postType',
 			postType,
 			'level',
 			postId
 		);
-
-		const [ termDurationIDs ] = useEntityProp(
+		const [termDurationIDs] = useEntityProp(
 			'postType',
 			postType,
 			'duration',
 			postId
 		);
 
-		const { areas, categories, intensities, levels, durations, isLoading } =
-			useSelect(
-				( select ) => {
-					const { getEntityRecords, isResolving } = select( 'core' );
+		const {
+			authorName,
+			rating,
+			parentId,
+			postChildren,
+			areas,
+			categories,
+			intensities,
+			levels,
+			durations,
+			isLoading,
+		} = useSelect(
+			(select) => {
+				const {
+					getEditedEntityRecord,
+					getUser,
+					getEntityRecords,
+					isResolving,
+				} = select(coreStore);
+				const { getCurrentPostAttribute } = select('core/editor');
+				const _authorId = getEditedEntityRecord(
+					'postType',
+					postType,
+					postId
+				)?.author;
+				const query = {
+					per_page: -1,
+					_embed: true,
+					order,
+					orderby: orderBy,
+					parent: postId,
+					status: 'publish',
+				};
+				const taxonomyAreaArgs = [
+					'taxonomy',
+					'area',
+					{
+						include: termAreaIDs,
+					},
+				];
+				const taxonomyCategoryArgs = [
+					'taxonomy',
+					'category',
+					{
+						include: termCategoryIDs,
+					},
+				];
+				const taxonomyIntensityArgs = [
+					'taxonomy',
+					'intensity',
+					{
+						include: termIntensityIDs,
+					},
+				];
+				const taxonomyLevelArgs = [
+					'taxonomy',
+					'level',
+					{
+						include: termLevelIDs,
+					},
+				];
+				const taxonomyDurationArgs = [
+					'taxonomy',
+					'duration',
+					{
+						include: termDurationIDs,
+					},
+				];
 
-					const taxonomyAreaArgs = [
-						'taxonomy',
-						'area',
-						{
-							include: termAreaIDs,
-						},
-					];
+				return {
+					authorName: _authorId ? getUser(_authorId) : null,
+					rating: getCurrentPostAttribute('meta').lesson_rating,
+					parentId: getCurrentPostAttribute('parent'),
+					postChildren: getEntityRecords('postType', postType, query),
+					areas: getEntityRecords(...taxonomyAreaArgs),
+					intensities: getEntityRecords(...taxonomyIntensityArgs),
+					levels: getEntityRecords(...taxonomyLevelArgs),
+					durations: getEntityRecords(...taxonomyDurationArgs),
+					categories: getEntityRecords(...taxonomyCategoryArgs),
+					isLoading: isResolving(
+						'getEntityRecords',
+						'taxonomyAreaArgs'
+					),
+				};
+			},
+			[
+				postType,
+				postId,
+				order,
+				orderBy,
+				termAreaIDs,
+				termCategoryIDs,
+				termIntensityIDs,
+				termLevelIDs,
+				termDurationIDs,
+			]
+		);
 
-					const taxonomyCategoryArgs = [
-						'taxonomy',
-						'category',
-						{
-							include: termCategoryIDs,
-						},
-					];
-
-					const taxonomyIntensityArgs = [
-						'taxonomy',
-						'intensity',
-						{
-							include: termIntensityIDs,
-						},
-					];
-
-					const taxonomyLevelArgs = [
-						'taxonomy',
-						'level',
-						{
-							include: termLevelIDs,
-						},
-					];
-
-					const taxonomyDurationArgs = [
-						'taxonomy',
-						'duration',
-						{
-							include: termDurationIDs,
-						},
-					];
-
-					return {
-						areas: getEntityRecords( ...taxonomyAreaArgs ),
-						intensities: getEntityRecords(
-							...taxonomyIntensityArgs
-						),
-						levels: getEntityRecords( ...taxonomyLevelArgs ),
-						durations: getEntityRecords( ...taxonomyDurationArgs ),
-						categories: getEntityRecords( ...taxonomyCategoryArgs ),
-						isLoading: isResolving(
-							'getEntityRecords',
-							'taxonomyAreaArgs'
-						),
-					};
-				},
-				[
-					termAreaIDs,
-					termCategoryIDs,
-					termIntensityIDs,
-					termLevelIDs,
-					termDurationIDs,
-				]
-			);
-
-		const { rating } = useSelect( ( select ) => {
-			const { getCurrentPostAttribute } = select( 'core/editor' );
-
-			return {
-				rating: getCurrentPostAttribute( 'meta' ).lesson_rating,
-			};
-		} );
-
-		const onSelectVideo = ( value ) => {
-			setMeta( { ...meta, video_src: value.url } );
+		const onSelectVideo = (value) => {
+			setMeta({ ...meta, video_src: value.url });
 		};
 
-		const onSelectURL = ( value ) => {
-			setMeta( { ...meta, video_src: value } );
+		const onSelectURL = (value) => {
+			setMeta({ ...meta, video_src: value });
 		};
 
 		const onRemoveVideo = () => {
-			setMeta( { ...meta, video_src: '' } );
+			setMeta({ ...meta, video_src: '' });
 		};
 
-		const myVideo = document.getElementById( 'myVideo' );
+		const myVideo = document.getElementById('myVideo');
 
 		return (
 			<>
-				{ videoSrc && (
+				{videoSrc && (
 					<BlockControls>
 						<MediaReplaceFlow
-							mediaURL={ videoSrc }
-							allowedTypes={ ALLOWED_MEDIA_TYPES }
+							mediaURL={videoSrc}
+							allowedTypes={ALLOWED_MEDIA_TYPES}
 							accept="video/*"
-							onSelect={ onSelectVideo }
-							onSelectURL={ onSelectURL }
+							onSelect={onSelectVideo}
+							onSelectURL={onSelectURL}
 						/>
-						<ToolbarButton onClick={ onRemoveVideo }>
-							{ __( 'Remove', 'lsedu-plus' ) }
+						<ToolbarButton onClick={onRemoveVideo}>
+							{__('Remove', 'lsedu-plus')}
 						</ToolbarButton>
 					</BlockControls>
-				) }
-				<div { ...blockProps }>
+				)}
+				<div {...blockProps}>
 					<div className="row separator">
 						<i className="bi bi-play-btn"></i>
 						<div className="lesson-column-8">
 							<div className="lesson-title">
-								{ __( 'video url', 'lsedu-plus' ) }
+								{__('video url', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data">
-								{ videoSrc && (
+								{videoSrc && (
 									<div className="lesson-video-url">
 										<iframe
-											src={ videoSrc }
+											src={videoSrc}
 											className="lesson-video-player"
 											id="myVideo"
 											frameborder="0"
 											allow="fullscreen; autoplay; clipboard-write;"
 										/>
 									</div>
-								) }
-								{ ! videoSrc && (
+								)}
+								{!videoSrc && (
 									<MediaPlaceholder
 										icon="admin-users"
 										accept="video/*"
-										allowedTypes={ ALLOWED_MEDIA_TYPES }
-										onSelect={ onSelectVideo }
-										onSelectURL={ onSelectURL }
+										allowedTypes={ALLOWED_MEDIA_TYPES}
+										onSelect={onSelectVideo}
+										onSelectURL={onSelectURL}
 									/>
-								) }
+								)}
 							</div>
 						</div>
 
 						<div className="lesson-column-4">
 							<div className="lesson-title">
-								{ __( 'Duration Time', 'lsedu-plus' ) }
+								{__('Duration Time', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data lesson-duration-time">
 								<RichText
 									tagName="span"
-									value={ durationTime }
-									onChange={ ( durationTime ) =>
-										setAttributes( {
+									value={durationTime}
+									onChange={(durationTime) =>
+										setAttributes({
 											durationTime,
-										} )
+										})
 									}
-									placeholder={ __(
+									placeholder={__(
 										'Duration time',
 										'lsedu-plus'
-									) }
+									)}
 								/>
 							</div>
 						</div>
@@ -251,14 +241,14 @@ registerBlockType( block.name, {
 						<i className="bi bi-info-square"></i>
 						<div className="lesson-column-4">
 							<div className="lesson-title">
-								{ __( 'Area', 'lsedu-plus' ) }
+								{__('Area', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data lesson-area">
-								{ isLoading && <Spinner /> }
-								{ ! isLoading &&
+								{isLoading && <Spinner />}
+								{!isLoading &&
 									areas &&
-									areas.map( ( item, index ) => {
-										const comma = areas[ index + 1 ]
+									areas.map((item, index) => {
+										const comma = areas[index + 1]
 											? ', '
 											: '';
 										return (
@@ -268,34 +258,34 @@ registerBlockType( block.name, {
 														item.meta.more_info_url
 													}
 												>
-													{ item.name }
+													{item.name}
 												</a>
-												{ comma }
+												{comma}
 											</>
 										);
-									} ) }
+									})}
 							</div>
 						</div>
 						<div className="lesson-column-4">
 							<div className="lesson-title">
-								{ __( 'Category', 'lsedu-plus' ) }
+								{__('Category', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data lesson-category">
-								{ categories &&
-									categories.map( ( item, index ) => {
-										const comma = categories[ index + 1 ]
+								{categories &&
+									categories.map((item, index) => {
+										const comma = categories[index + 1]
 											? ', '
 											: '';
 										return item.name + comma;
-									} ) }
+									})}
 							</div>
 						</div>
 						<div className="lesson-column-4">
 							<div className="lesson-title">
-								{ __( 'Author', 'lsedu-plus' ) }
+								{__('Author', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data lesson-author">
-								{ authorName?.name }
+								{authorName?.name}
 							</div>
 						</div>
 					</div>
@@ -303,44 +293,44 @@ registerBlockType( block.name, {
 					<div className="row">
 						<div className="lesson-column-4">
 							<div className="lesson-title">
-								{ __( 'Intensity', 'lsedu-plus' ) }
+								{__('Intensity', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data lesson-intensity">
-								{ intensities &&
-									intensities.map( ( item, index ) => {
-										const comma = intensities[ index + 1 ]
+								{intensities &&
+									intensities.map((item, index) => {
+										const comma = intensities[index + 1]
 											? ', '
 											: '';
 										return item.name + comma;
-									} ) }
+									})}
 							</div>
 						</div>
 						<div className="lesson-column-4">
 							<div className="lesson-title">
-								{ __( 'Level', 'lsedu-plus' ) }
+								{__('Level', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data lesson-level">
-								{ levels &&
-									levels.map( ( item, index ) => {
-										const comma = levels[ index + 1 ]
+								{levels &&
+									levels.map((item, index) => {
+										const comma = levels[index + 1]
 											? ', '
 											: '';
 										return item.name + comma;
-									} ) }
+									})}
 							</div>
 						</div>
 						<div className="lesson-column-4">
 							<div className="lesson-title">
-								{ __( 'Duration', 'lsedu-plus' ) }
+								{__('Duration', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data lesson-duration">
-								{ durations &&
-									durations.map( ( item, index ) => {
-										const comma = durations[ index + 1 ]
+								{durations &&
+									durations.map((item, index) => {
+										const comma = durations[index + 1]
 											? ', '
 											: '';
 										return item.name + comma;
-									} ) }
+									})}
 							</div>
 						</div>
 					</div>
@@ -349,21 +339,30 @@ registerBlockType( block.name, {
 						<i className="bi bi-hand-thumbs-up"></i>
 						<div className="lesson-column-6">
 							<div className="lesson-title">
-								{ __( 'Rating', 'lsedu-plus' ) }
+								{__('Rating', 'lsedu-plus')}
 							</div>
 							<div className="lesson-data lesson-rating">
-								<Rating value={ rating } readOnly />
+								<Rating value={rating} readOnly />
 							</div>
 						</div>
 						<div className="lesson-column-6">
 							<div className="lesson-title">
-								{ __( 'Info', 'lsedu-plus' ) }
+								{__('Info', 'lsedu-plus')}
 							</div>
-							<div className="lesson-data lesson-info"></div>
+							<div className="lesson-data lesson-info">
+								<ul>
+									{postChildren &&
+										postChildren.map((child) => {
+											return (
+												<li>{child.title.rendered}</li>
+											);
+										})}
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 			</>
 		);
 	},
-} );
+});

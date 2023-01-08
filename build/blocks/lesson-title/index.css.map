@@ -1,0 +1,1 @@
+{"version":3,"file":"blocks/lesson-title/index.css","mappings":";;;AAAA;AACA;EACI;AACJ,C","sources":["webpack://lsedu-plus/./src/blocks/lesson-title/editor.scss"],"sourcesContent":["/* editor.scss */\n.wp-block-lsedu-plus-lesson-list {\n    list-style: none;\n}"],"names":[],"sourceRoot":""}

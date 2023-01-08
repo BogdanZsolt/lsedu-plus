@@ -7,6 +7,7 @@ import {
 	useInnerBlocksProps,
 	store as blockEditorStore,
 	InspectorControls,
+	PanelColorSettings,
 } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
@@ -30,9 +31,10 @@ const TEMPLATE = [
 
 export default function Edit(props) {
 	const { clientId, attributes, setAttributes, context } = props;
-	const { isSlider, columns, displayLayout } = attributes;
+	const { isSlider, columns, displayLayout, sliderScrollerColor } =
+		attributes;
 
-	const { postType, order, orderBy, setTaxonomy } = context;
+	const { postType, order, orderBy, setTaxonomy, activePostId } = context;
 
 	const [activeBlockContextId, setActiveBlockContextId] = useState();
 
@@ -135,6 +137,18 @@ export default function Edit(props) {
 		}),
 	});
 
+	const onIconColor = (value) => {
+		const tempObj = { ...sliderScrollerColor };
+		tempObj.textColor = value;
+		setAttributes({ sliderScrollerColor: tempObj });
+	};
+
+	const onBackgroundColor = (value) => {
+		const tempObj = { ...sliderScrollerColor };
+		tempObj.background = value;
+		setAttributes({ sliderScrollerColor: tempObj });
+	};
+
 	if (!posts) {
 		return (
 			<p {...blockProps}>
@@ -186,6 +200,27 @@ export default function Edit(props) {
 						/>
 					)}
 				</PanelBody>
+				{isSlider && (
+					<PanelColorSettings
+						title={__(
+							'Slider Scroller Color Settings',
+							'lsedu-plus'
+						)}
+						enableAlpha
+						colorSettings={[
+							{
+								value: sliderScrollerColor.textColor,
+								onChange: onIconColor,
+								label: __('Icon Color', 'lsedu-plus'),
+							},
+							{
+								value: sliderScrollerColor.background,
+								onChange: onBackgroundColor,
+								label: __('Background Color', 'lsedu-plus'),
+							},
+						]}
+					/>
+				)}
 			</InspectorControls>
 			{!isSlider && (
 				<BlockControls>
@@ -196,8 +231,20 @@ export default function Edit(props) {
 				<div {...blockProps}>
 					{isSlider && (
 						<>
-							<div className="lsedup-lesson-list__prev"></div>
-							<div className="lsedup-lesson-list__next"></div>
+							<div
+								className="lsedup-lesson-list__prev"
+								style={{
+									color: sliderScrollerColor.textColor,
+									background: sliderScrollerColor.background,
+								}}
+							></div>
+							<div
+								className="lsedup-lesson-list__next"
+								style={{
+									color: sliderScrollerColor.textColor,
+									background: sliderScrollerColor.background,
+								}}
+							></div>
 						</>
 					)}
 					{blockContexts.map((blockContext) => (

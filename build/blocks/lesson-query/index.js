@@ -1,1 +1,789 @@
-!function(){var e={4184:function(e,t){var n;!function(){"use strict";var o={}.hasOwnProperty;function r(){for(var e=[],t=0;t<arguments.length;t++){var n=arguments[t];if(n){var s=typeof n;if("string"===s||"number"===s)e.push(n);else if(Array.isArray(n)){if(n.length){var l=r.apply(null,n);l&&e.push(l)}}else if("object"===s){if(n.toString!==Object.prototype.toString&&!n.toString.toString().includes("[native code]")){e.push(n.toString());continue}for(var a in n)o.call(n,a)&&n[a]&&e.push(a)}}}return e.join(" ")}e.exports?(r.default=r,e.exports=r):void 0===(n=function(){return r}.apply(t,[]))||(e.exports=n)}()}},t={};function n(o){var r=t[o];if(void 0!==r)return r.exports;var s=t[o]={exports:{}};return e[o](s,s.exports,n),s.exports}n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,{a:t}),t},n.d=function(e,t){for(var o in t)n.o(t,o)&&!n.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},function(){"use strict";var e=window.wp.blocks,t=window.wp.element,o=window.wp.i18n,r=window.wp.data,s=window.wp.blockEditor,l=window.wp.components,a=window.wp.coreData,c=n(4184),i=n.n(c);function u(){return u=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},u.apply(this,arguments)}var p=window.lodash;function d(e){let{label:n,noOptionLabel:o,categoriesList:r,selectedCategoryId:s,onChange:a,...c}=e;const i=(0,t.useMemo)((()=>function(e){const t=e.map((e=>({children:[],parent:null,...e}))),n=(0,p.groupBy)(t,"parent");if(n.null&&n.null.length)return t;const o=e=>e.map((e=>{const t=n[e.id];return{...e,children:t&&t.length?o(t):[]}}));return o(n[0]||[])}(r)),[r]);return(0,t.createElement)(l.TreeSelect,u({label:n,noOptionLabel:o,onChange:a,tree:i,selectedId:s},c))}function g(e){let{label:n,pluralLabel:r,categoriesList:s,selectedCategoryId:a,categorySuggestions:c,selectedCategories:i,onCategoryChange:u}=e;return[s&&u&&(0,t.createElement)(d,{key:"filter-controls-category-select",categoriesList:s,label:n,noOptionLabel:(0,o.__)("All"),selectedCategoryId:a,onChange:u}),c&&u&&(0,t.createElement)(l.FormTokenField,{key:"filter-controls-categories-select",label:r,value:i&&i.map((e=>({id:e.id,value:e.name||e.value}))),suggestions:Object.keys(c),onChange:u,maxSuggestions:20})]}const y=[["lsedu-plus/lesson-list-header",{}],["lsedu-plus/lesson-list",{}]];var f,h=JSON.parse('{"u2":"lsedu-plus/lesson-query"}'),m=window.React;function v(){return v=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},v.apply(this,arguments)}(0,e.registerBlockType)(h.u2,{icon:{src:function(e){return m.createElement("svg",v({xmlns:"http://www.w3.org/2000/svg",xmlSpace:"preserve",viewBox:"0 0 306 279"},e),f||(f=m.createElement("path",{d:"M219.83 28.356c-.345-6.779 1.301-13.54 9.569-5.483 8.27 8.057 11.449 11.343 14.418 13.251 2.968 1.908 4.24 1.441 8.057.805 3.815-.636 4.452-.805 7.95-.275s2.933.954 5.865-1.908c2.934-2.862 9.188-10.601 15.23-16.326 6.042-5.724 11.031-4.134 11.031 5.937s-4.322 18.986-5.198 27.881c-.53 5.385-2.65 2.237-3.817 9.753-1.03 6.636-5.194 14.417-6.36 22.792s-3.656 17.386-4.912 19.931c-1.257 2.544-.918 2.334-.918 7.634s.115 5.174.424 9.752c.637 9.435.637 14.312-8.374 28.304-9.011 13.994-9.647 10.389-14.735 18.871s-7.421 12.827-9.116 15.16c-1.696 2.332-.742.211-.742 3.074 0 2.862-.426 33.499.423 36.998.849 3.498 1.484 8.162 2.969 8.692s7.844 4.135 11.131 6.785c3.286 2.649 2.598 10.08-6.572 10.706-4.452.305-18.921-.247-22.368-7.525-3.816-8.058-7.584-18.874-8.48-25.761-2.333-17.917-5.726-25.126-5.726-25.126s1.084 8.296-1.166 22.263c-2.545 15.795-12.615 25.124-12.615 25.124s4.45 1.804 4.239 6.044c-.212 4.24-1.273 7.739-22.37 9.33-21.095 1.59-20.4-.53-22.709-.425-2.309.106-6.974.849-13.971 1.696-6.997.849-11.767-.317-13.887 0-2.12.318-14.205 6.996-56.291 4.134-42.085-2.862-52.847-22.499-52.847-40.129 0-28.439 21.756-42.36 33.936-42.828 8.802-.339 19.806 8.633 1.523 8.972-11.509.213-22.006 12.865-22.006 33.01s19.467 25.73 39.611 25.73c18.102 0 25.106 1.263 30.47-1.185 9.649-4.401 11.342-6.433 11.85-12.02.508-5.586 3.555-15.065.508-42.828-3.047-27.762 23.191-67.204 51.292-78.715s22.684-7.787 29.116-9.987c6.433-2.201 16.42-6.94 19.129-10.326 2.708-3.386 10.495-10.157 12.696-12.357 4.249-4.25 3.323-7.116 3.05-17.128-.037-1.364-1.696-2.17-3.05-7.249s-1.632-8.107-3.155-13.693c-1.51-5.551-3-9.567-3.09-11.321z"})))}},edit:function(e){const{attributes:n,setAttributes:c,context:u}=e,{postType:p,orderBy:d,order:f,inherit:h,setTaxonomy:m}=n,{postTypesTaxonomiesMap:v,postTypesSelectOptions:b}=(()=>{const e=(0,r.useSelect)((e=>{const{getPostTypes:t}=e(a.store),n=["attachment"],o=t({per_page:-1})?.filter((e=>{let{viewable:t,slug:o}=e;return t&&!n.includes(o)}));return o}),[]);return{postTypesTaxonomiesMap:(0,t.useMemo)((()=>{if(e?.length)return e.reduce(((e,t)=>(e[t.slug]=t.taxonomies,e)),{})}),[e]),postTypesSelectOptions:(0,t.useMemo)((()=>(e||[]).map((e=>{let{labels:t,slug:n}=e;return{label:t.singular_name,value:n}}))),[e])}})(),{taxList:w}=(0,r.useSelect)((e=>{const{getEntityRecords:t}=e(a.store);return{taxList:t("taxonomy",m.taxType,{per_page:-1,context:"view"})}}),[m]),x=(0,s.useBlockProps)({className:i()("lsedup-lesson-list__container")});return(0,t.createElement)(t.Fragment,null,(0,t.createElement)(s.InspectorControls,null,(0,t.createElement)(l.PanelBody,{title:(0,o.__)("Settings","lsedu-plus")},(0,t.createElement)(l.ToggleControl,{label:(0,o.__)("Inherit query from template","lsedu-plus"),help:(0,o.__)("Toggle to use the global query context that is set with the current template, such as an archive or search. Disable to customize the settings independently."),checked:h,onChange:e=>c({inherit:!!e})}),!h&&(0,t.createElement)(t.Fragment,null,b&&(0,t.createElement)(l.SelectControl,{label:(0,o.__)("Post type","lsedu-plus"),value:p,options:b,onChange:e=>c({postType:e}),help:(0,o.__)("WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.","lsedu-plus")}),(0,t.createElement)(l.QueryControls,{orderBy:d,onOrderByChange:e=>{c({orderBy:e})},order:f,onOrderChange:e=>{c({order:e})}}))),!h&&(0,t.createElement)(l.PanelBody,{title:(0,o.__)("Filters","ls-studio-blocks")},v&&(0,t.createElement)(l.SelectControl,{label:(0,o.__)("Taxonomy","lsedu-plus"),options:(v[p]||[]).map((e=>({label:e,value:e})),[v]),value:m.taxType,onChange:e=>{const t={...m};t.taxType=e,c({setTaxonomy:t})},help:(0,o.__)("WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.","lsedu-plus")}),w&&(0,t.createElement)(g,{label:m.taxType,categoriesList:w,selectedCategoryId:m.taxSelect,onCategoryChange:e=>{const t={...m};t.taxSelect=e,c({setTaxonomy:t})}}))),(0,t.createElement)("div",x,(0,t.createElement)(s.InnerBlocks,{template:y,orientation:"horizontal"})))},save:function(){const e=s.useBlockProps.save();return(0,t.createElement)("div",e,(0,t.createElement)(s.InnerBlocks.Content,null))}})}()}();
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/logo-01.svg":
+/*!*************************!*\
+  !*** ./src/logo-01.svg ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReactComponent": () => (/* binding */ SvgLogo01),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _path;
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+var SvgLogo01 = function SvgLogo01(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    xmlSpace: "preserve",
+    viewBox: "0 0 306 279"
+  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    d: "M219.83 28.356c-.345-6.779 1.301-13.54 9.569-5.483 8.27 8.057 11.449 11.343 14.418 13.251 2.968 1.908 4.24 1.441 8.057.805 3.815-.636 4.452-.805 7.95-.275s2.933.954 5.865-1.908c2.934-2.862 9.188-10.601 15.23-16.326 6.042-5.724 11.031-4.134 11.031 5.937s-4.322 18.986-5.198 27.881c-.53 5.385-2.65 2.237-3.817 9.753-1.03 6.636-5.194 14.417-6.36 22.792s-3.656 17.386-4.912 19.931c-1.257 2.544-.918 2.334-.918 7.634s.115 5.174.424 9.752c.637 9.435.637 14.312-8.374 28.304-9.011 13.994-9.647 10.389-14.735 18.871s-7.421 12.827-9.116 15.16c-1.696 2.332-.742.211-.742 3.074 0 2.862-.426 33.499.423 36.998.849 3.498 1.484 8.162 2.969 8.692s7.844 4.135 11.131 6.785c3.286 2.649 2.598 10.08-6.572 10.706-4.452.305-18.921-.247-22.368-7.525-3.816-8.058-7.584-18.874-8.48-25.761-2.333-17.917-5.726-25.126-5.726-25.126s1.084 8.296-1.166 22.263c-2.545 15.795-12.615 25.124-12.615 25.124s4.45 1.804 4.239 6.044c-.212 4.24-1.273 7.739-22.37 9.33-21.095 1.59-20.4-.53-22.709-.425-2.309.106-6.974.849-13.971 1.696-6.997.849-11.767-.317-13.887 0-2.12.318-14.205 6.996-56.291 4.134-42.085-2.862-52.847-22.499-52.847-40.129 0-28.439 21.756-42.36 33.936-42.828 8.802-.339 19.806 8.633 1.523 8.972-11.509.213-22.006 12.865-22.006 33.01s19.467 25.73 39.611 25.73c18.102 0 25.106 1.263 30.47-1.185 9.649-4.401 11.342-6.433 11.85-12.02.508-5.586 3.555-15.065.508-42.828-3.047-27.762 23.191-67.204 51.292-78.715s22.684-7.787 29.116-9.987c6.433-2.201 16.42-6.94 19.129-10.326 2.708-3.386 10.495-10.157 12.696-12.357 4.249-4.25 3.323-7.116 3.05-17.128-.037-1.364-1.696-2.17-3.05-7.249s-1.632-8.107-3.155-13.693c-1.51-5.551-3-9.567-3.09-11.321z"
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4KPHN2ZwogICAgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIgogICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgeG1sbnM6Y2M9Imh0dHA6Ly93ZWIucmVzb3VyY2Uub3JnL2NjLyIKICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICAgeG1sbnM6bnMxPSJodHRwOi8vc296aS5iYWllcm91Z2UuZnIiCiAgICBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAzMDYgMjc5IgogICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgIHZlcnNpb249IjEuMSIKICAgIHk9IjBweCIKICAgIHg9IjBweCIKICAgIHZpZXdCb3g9IjAgMCAzMDYgMjc5IgogID4KPGcKICAgICAgaWQ9IkxheWVyXzEiCiAgICAgIGRpc3BsYXk9Im5vbmUiCiAgICA+CjwvZwogID4KPGcKICAgICAgaWQ9IkhlYWQiCiAgICAgIGRpc3BsYXk9Im5vbmUiCiAgICAgIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIgogICAgICBzdHJva2Utd2lkdGg9Ii4yNSIKICAgICAgZmlsbD0ibm9uZSIKICAgID4KCQk8ZWxsaXBzZQogICAgICAgIHJ4PSI1MS45NzgiCiAgICAgICAgY3k9IjIzOC4xMiIKICAgICAgICByeT0iNDQuOTAxIgogICAgICAgIGN4PSI0NDIuNjMiCiAgICAgICAgZGlzcGxheT0iaW5saW5lIgogICAgLz4KCTxwYXRoCiAgICAgICAgZD0ibTUxOC4xIDEzMy4wNmMtOC42NTktMi42MTItMjAuODU3IDEyLjQzMy0yNy4yNDUgMzMuNjA1LTIuNTM5IDguNDExLTMuNzczIDE2LjUxOS0zLjgwMyAyMy40MDYgNi44NTEgNC43OTkgMTIuNDA3IDEwLjgzNCAxNi4xOTMgMTcuNjkzIDcuMDIyLTQuNzY2IDE0LjQ0NC0xNi42NjUgMTguOTYzLTMxLjYzNyA2LjM5LTIxLjE3IDQuNTUtNDAuNDUtNC4xMS00My4wNnoiCiAgICAgICAgZGlzcGxheT0iaW5saW5lIgogICAgLz4KPC9nCiAgPgo8ZwogICAgICBpZD0iTGF5ZXJfNSIKICAgICAgZGlzcGxheT0ibm9uZSIKICAgID4KCTxnCiAgICAgICAgZGlzcGxheT0iaW5saW5lIgogICAgICA+CgkJPGcKICAgICAgICA+CgkJCTxwYXRoCiAgICAgICAgICAgIGNsaXAtcnVsZT0iZXZlbm9kZCIKICAgICAgICAgICAgZD0ibTQ3Ny42NyAxOTQuNTRoMy42MDFjNC4wNjQgMS42OTUgNS4yMzcgNi4yODMgNiAxMS4yOHY2Yy0xLjQ4NiA4LjcyOS0zLjE4IDE3LjMzMy00LjggMjUuOTItMS4zMDIgNi44OTctMi4xMDcgMTIuOTItNS4wNCAxOC0wLjg0OCAxLjQ2Ny0yLjkxMiAzLjI1OC0zLjEyIDUuMDQtMS4zNzMgMTEuNzY3LTcuMjM1IDIyLjE1LTkuNjAxIDM0LjA4LTIuMzk2IDEyLjA4Ni0zLjYgMjQuMDk5LTguODggMzQuNTYgMC4zMTMgNS40MDQtMC4zNDEgMTAuNjQ4LTAuMjM5IDE1LjEyIDAuMDk3IDQuMjk0IDEuMTIyIDguMzI2IDEuMTk5IDEyLjI0IDAuNDA4IDIwLjY1NC05LjYzNyAzNS4yNDctMTkuMTk5IDQ2LjgtMy43OTQgNC41ODQtOC41MDUgOC42NjEtMTIuNDggMTMuOTIxLTYuNzYzIDguOTQ2LTEwLjc1NiAxOC45OTMtMTcuNTIgMjguNTYgMC4wMTcgMTMuNjQzIDAuNjQzIDI4LjQ5NyAwLjcyIDQyLjcyIDAuMDI1IDQuNzk5LTAuMjk4IDkuODg0IDAuMjQgMTQuMTYgMC41NTUgNC40MjEgMy4wODEgOS4wOTkgMy44NCAxMy4yIDMuNjA3IDIuMzEgNi43MjEgNC4yMjkgMTAuNTYgNi40NzkgNC4wMiAyLjM1NyAxMS41MTYgNS42MTggOC42NDEgMTIuOTYtMi44NTggNy4yOTktMTMuMzgzIDcuNjY1LTIyLjA4IDYuMjQtOS4yNDYtMS41MTQtMTcuNzgxLTEuNzg3LTIxLjg0MS04LjM5OS0yLjY0Mi00LjMwNi00LjY0Ny0xMC41NTMtNy4xOTktMTYuNTYxLTQuNzM3LTExLjE1Mi02LjQ1Mi0yNC44NjEtOS4xMi0zOC4xNi0wLjgzNy00LjE3Mi0xLjkxNi0xMS4zOTktMy42MDEtMTcuMDQtMC4zNzgtMS4yNjctMC4wMDQtMS41MDUtMS4xOTktMS42OC0yLjY3LTAuMzkxLTEuMjgyIDUuMjg2LTEuNDQgOC42NC0wLjEyIDIuNTQ5LTEuMDkxIDcuMDY2LTEuMiA5LjEyLTAuMjk1IDUuNTQyLTAuMDQyIDEwLjUzMy0wLjk2IDE1LjM2LTIuNjEyIDEzLjc0LTguODk1IDI0LjMwMi0xNy4yOCAzMi44OCA2LjQ3OCAyLjAyNSA3LjkzIDEzLjMzIDEuNjgxIDE3LjUyMS0zLjM3NCAyLjI2Mi04LjUyIDMuMDQ3LTEzLjkyIDMuODQtMTIuMzc1IDEuODE2LTI3Ljc5OCAyLjg5OS00MC44IDIuMTYtMi43MDYtMC4xNTQtNS4xLTEuMDczLTcuNDQtMS4yLTIuODc5LTAuMTU3LTYuNDA5IDAuODQ5LTkuODQgMS4yLTkuMjkxIDAuOTUxLTIwLjY0MSAyLjEyNC0zMC43MiAxLjQzOS0wLjE1Mi0wLjAxMS0wLjMyOC0wLjAxNS0wLjQ4IDAtMy4yMjMgMC4zMTYtNi44NDEgMi4wNzQtMTAuNTYgMi44OC0xMC40OTQgMi4yNzQtMjQuMTYzIDIuNzA0LTM2IDMuODRoLTE2LjMyYy01MC4xNTQtMS41MjUtOTMuMzg5LTkuOTctOTguNjQtNTYuMzk5di0xMC4wOGMwLjQ5NC00LjQ3NSAxLjQwMy05LjI5IDIuNjQtMTMuMiAzLjcxNC0xMS43NDEgMTAuNjQ3LTIxLjg0OSAxOC4yNC0yOC44IDQuOTE0LTQuNDk4IDEwLjg0Ny04LjYxMyAxOS40NC0xMS43NiA1Ljc0OS0yLjEwNSAyMS4zODItNi41OCAyNC4yNCAwIDAuODExIDEuODY2IDAuNTM1IDQuMjY5LTAuMjQgNS43Ni0xLjYwNiAzLjA5Mi02LjQyIDIuODA0LTEwLjU2IDQuMDgtMTEuNDQ0IDMuNTI3LTE4LjkxOSAxMC41OTQtMjQuOTYgMTkuMi04LjI0IDExLjczOS0xMy4wODYgMjkuNTQ1LTQuNTYgNDQuNjQgMTAuMTY5IDE4LjAwNCAzNy4xNzEgMjIuNTE2IDY0LjU2IDIzLjc2IDguNzI5IDAuMzk2IDIwLjY5NSAxLjk0NCAyOC41NiAwIDMuNTE2LTAuODY5IDcuNzQ4LTMuMDExIDEyLTUuMjggMi4zNDYtMS4yNTIgMTAuMDg2LTUuMTg4IDEwLjMyLTcuNjggMS4wNjgtMTEuMzg3IDMuMzkyLTE5LjU5MyA0LjMyLTI5LjI4IDAuMjg3LTIuOTktMC45ODQtNS41MDgtMS40NC04LjE1OS0zLjQ1NC0yMC4wODUtMC4zMTctNDAuOTA4IDQuMDgtNTcuMzYgNS4wODUtMTkuMDI4IDEyLjgxMS0zNi4yNCAyMi41Ni01MC44OCAxMC40NjktMTUuNzIxIDIxLjUxNy0yNy42MzQgMzcuNjgtMzUuNzYgMTIuMzQyLTYuMjA1IDI1LjY5MS0xMS41MTUgMzguODgtMTYuMzIgNC41ODItMS42NjkgOS42OTctMi4wMzUgMTQuODgtMy42IDQuMTI2LTEuMjQ2IDguNjM2LTQuMDY2IDEyLjk2LTYuMjQgMy45MjktMS45NzYgOC40OTgtMy44NTUgMTEuNzYtNiAyLjIzNS0xLjQ3IDQuMTM5LTQuNTcxIDYuNDgtNi45NiAxLjkzOS0xLjk3OSAzLjkyNy00LjM1NSA2LjQ3OS02LjQ4IDQuNDQyLTMuNjk3IDEwLjczOC03LjI4NyAxMi43Mi0xMy4yIDEuODUxLTUuNTIxIDAuMjk4LTEyLjQxNCAwLjQ4LTE5LjY4LTUuNDI2LTcuNjYtNi4zMTgtMTkuNzU4LTkuMTItMzAuNzItMS4yMzEtNC44MTktMy4yNjctOS44MDItNC4wOC0xNS44NC0wLjczOS01LjQ5LTAuNTE0LTE0LjMyIDQuNTYxLTE0Ljg4IDQuMjIxLTAuNDY1IDcuMjgyIDMuNDQzIDkuODQgNiA1Ljc2MSA1Ljc2MSAxMC4wNDEgMTAuMDY3IDE2LjA4IDE1LjEyIDIuNjI1IDIuMTk2IDYuMjI4IDUuNTM0IDkuNiA2IDIuOTkyIDAuNDEzIDcuNTIyLTEuMzAyIDExLjUyMS0xLjQ0IDMuNzU2LTAuMTMgNy40NTggMC4yMTkgMTIgMC45NiAzLjEwOS0xLjg3MSA1LjI3LTUuMTA5IDcuOTItNy45MiAyLjU4OS0yLjc0NiA1LjE5NC01LjY0NyA3LjkyLTguNjQgNC41OS01LjA0IDExLjEyLTEzLjAxIDE3LjI4LTE2LjA4eiIKICAgICAgICAgICAgZmlsbC1ydWxlPSJldmVub2RkIgogICAgICAgIC8+CgkJPC9nCiAgICAgID4KCTwvZwogICAgPgo8L2cKICA+CjxnCiAgICAgIGlkPSJUcmFjZSIKICAgID4KCTxwYXRoCiAgICAgICAgZD0ibTIxOS44MyAyOC4zNTZjLTAuMzQ1LTYuNzc5IDEuMzAxLTEzLjU0IDkuNTY5LTUuNDgzIDguMjcgOC4wNTcgMTEuNDQ5IDExLjM0MyAxNC40MTggMTMuMjUxIDIuOTY4IDEuOTA4IDQuMjQgMS40NDEgOC4wNTcgMC44MDUgMy44MTUtMC42MzYgNC40NTItMC44MDUgNy45NS0wLjI3NXMyLjkzMyAwLjk1NCA1Ljg2NS0xLjkwOGMyLjkzNC0yLjg2MiA5LjE4OC0xMC42MDEgMTUuMjMtMTYuMzI2IDYuMDQyLTUuNzI0IDExLjAzMS00LjEzNCAxMS4wMzEgNS45MzdzLTQuMzIyIDE4Ljk4Ni01LjE5OCAyNy44ODFjLTAuNTMgNS4zODUtMi42NSAyLjIzNy0zLjgxNyA5Ljc1My0xLjAzIDYuNjM2LTUuMTk0IDE0LjQxNy02LjM2IDIyLjc5MnMtMy42NTYgMTcuMzg2LTQuOTEyIDE5LjkzMWMtMS4yNTcgMi41NDQtMC45MTggMi4zMzQtMC45MTggNy42MzRzMC4xMTUgNS4xNzQgMC40MjQgOS43NTJjMC42MzcgOS40MzUgMC42MzcgMTQuMzEyLTguMzc0IDI4LjMwNC05LjAxMSAxMy45OTQtOS42NDcgMTAuMzg5LTE0LjczNSAxOC44NzFzLTcuNDIxIDEyLjgyNy05LjExNiAxNS4xNmMtMS42OTYgMi4zMzItMC43NDIgMC4yMTEtMC43NDIgMy4wNzQgMCAyLjg2Mi0wLjQyNiAzMy40OTkgMC40MjMgMzYuOTk4IDAuODQ5IDMuNDk4IDEuNDg0IDguMTYyIDIuOTY5IDguNjkyczcuODQ0IDQuMTM1IDExLjEzMSA2Ljc4NWMzLjI4NiAyLjY0OSAyLjU5OCAxMC4wOC02LjU3MiAxMC43MDYtNC40NTIgMC4zMDUtMTguOTIxLTAuMjQ3LTIyLjM2OC03LjUyNS0zLjgxNi04LjA1OC03LjU4NC0xOC44NzQtOC40OC0yNS43NjEtMi4zMzMtMTcuOTE3LTUuNzI2LTI1LjEyNi01LjcyNi0yNS4xMjZzMS4wODQgOC4yOTYtMS4xNjYgMjIuMjYzYy0yLjU0NSAxNS43OTUtMTIuNjE1IDI1LjEyNC0xMi42MTUgMjUuMTI0czQuNDUgMS44MDQgNC4yMzkgNi4wNDRjLTAuMjEyIDQuMjQtMS4yNzMgNy43MzktMjIuMzcgOS4zMy0yMS4wOTUgMS41OS0yMC40LTAuNTMtMjIuNzA5LTAuNDI1LTIuMzA5IDAuMTA2LTYuOTc0IDAuODQ5LTEzLjk3MSAxLjY5Ni02Ljk5NyAwLjg0OS0xMS43NjctMC4zMTctMTMuODg3IDAtMi4xMiAwLjMxOC0xNC4yMDUgNi45OTYtNTYuMjkxIDQuMTM0LTQyLjA4NS0yLjg2Mi01Mi44NDctMjIuNDk5LTUyLjg0Ny00MC4xMjkgMC0yOC40MzkgMjEuNzU2LTQyLjM2IDMzLjkzNi00Mi44MjggOC44MDItMC4zMzkgMTkuODA2IDguNjMzIDEuNTIzIDguOTcyLTExLjUwOSAwLjIxMy0yMi4wMDYgMTIuODY1LTIyLjAwNiAzMy4wMXMxOS40NjcgMjUuNzMgMzkuNjExIDI1LjczYzE4LjEwMiAwIDI1LjEwNiAxLjI2MyAzMC40Ny0xLjE4NSA5LjY0OS00LjQwMSAxMS4zNDItNi40MzMgMTEuODUtMTIuMDIgMC41MDgtNS41ODYgMy41NTUtMTUuMDY1IDAuNTA4LTQyLjgyOC0zLjA0Ny0yNy43NjIgMjMuMTkxLTY3LjIwNCA1MS4yOTItNzguNzE1czIyLjY4NC03Ljc4NyAyOS4xMTYtOS45ODdjNi40MzMtMi4yMDEgMTYuNDItNi45NCAxOS4xMjktMTAuMzI2IDIuNzA4LTMuMzg2IDEwLjQ5NS0xMC4xNTcgMTIuNjk2LTEyLjM1NyA0LjI0OS00LjI1IDMuMzIzLTcuMTE2IDMuMDUtMTcuMTI4LTAuMDM3LTEuMzY0LTEuNjk2LTIuMTctMy4wNS03LjI0OXMtMS42MzItOC4xMDctMy4xNTUtMTMuNjkzYy0xLjUxLTUuNTUxLTMtOS41NjctMy4wOS0xMS4zMjF6IgogICAgLz4KPC9nCiAgPgo8bWV0YWRhdGEKICAgID48cmRmOlJERgogICAgICA+PGNjOldvcmsKICAgICAgICA+PGRjOmZvcm1hdAogICAgICAgICAgPmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdAogICAgICAgID48ZGM6dHlwZQogICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIgogICAgICAgIC8+PGNjOmxpY2Vuc2UKICAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9saWNlbnNlcy9wdWJsaWNkb21haW4vIgogICAgICAgIC8+PGRjOnB1Ymxpc2hlcgogICAgICAgICAgPjxjYzpBZ2VudAogICAgICAgICAgICAgIHJkZjphYm91dD0iaHR0cDovL29wZW5jbGlwYXJ0Lm9yZy8iCiAgICAgICAgICAgID48ZGM6dGl0bGUKICAgICAgICAgICAgICA+T3BlbmNsaXBhcnQ8L2RjOnRpdGxlCiAgICAgICAgICAgID48L2NjOkFnZW50CiAgICAgICAgICA+PC9kYzpwdWJsaXNoZXIKICAgICAgICA+PGRjOnRpdGxlCiAgICAgICAgICA+U2l0dGluZyBDYXQgU2lsaG91ZXR0ZTwvZGM6dGl0bGUKICAgICAgICA+PGRjOmRhdGUKICAgICAgICAgID4yMDEyLTAzLTI0VDEzOjU2OjE3PC9kYzpkYXRlCiAgICAgICAgPjxkYzpkZXNjcmlwdGlvbgogICAgICAgIC8+PGRjOnNvdXJjZQogICAgICAgICAgPmh0dHBzOi8vb3BlbmNsaXBhcnQub3JnL2RldGFpbC8xNjkwOTcvc2l0dGluZy1jYXQtc2lsaG91ZXR0ZS1ieS1uZWh0YWVoNzk8L2RjOnNvdXJjZQogICAgICAgID48ZGM6Y3JlYXRvcgogICAgICAgICAgPjxjYzpBZ2VudAogICAgICAgICAgICA+PGRjOnRpdGxlCiAgICAgICAgICAgICAgPm5laHRhZWg3OTwvZGM6dGl0bGUKICAgICAgICAgICAgPjwvY2M6QWdlbnQKICAgICAgICAgID48L2RjOmNyZWF0b3IKICAgICAgICA+PGRjOnN1YmplY3QKICAgICAgICAgID48cmRmOkJhZwogICAgICAgICAgICA+PHJkZjpsaQogICAgICAgICAgICAgID5jYXQ8L3JkZjpsaQogICAgICAgICAgICA+PHJkZjpsaQogICAgICAgICAgICAgID5zaWxob3VldHRlPC9yZGY6bGkKICAgICAgICAgICAgPjxyZGY6bGkKICAgICAgICAgICAgICA+c2ltcGxlPC9yZGY6bGkKICAgICAgICAgICAgPjxyZGY6bGkKICAgICAgICAgICAgICA+c2l0dGluZzwvcmRmOmxpCiAgICAgICAgICAgID48L3JkZjpCYWcKICAgICAgICAgID48L2RjOnN1YmplY3QKICAgICAgICA+PC9jYzpXb3JrCiAgICAgID48Y2M6TGljZW5zZQogICAgICAgICAgcmRmOmFib3V0PSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9saWNlbnNlcy9wdWJsaWNkb21haW4vIgogICAgICAgID48Y2M6cGVybWl0cwogICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zI1JlcHJvZHVjdGlvbiIKICAgICAgICAvPjxjYzpwZXJtaXRzCiAgICAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjRGlzdHJpYnV0aW9uIgogICAgICAgIC8+PGNjOnBlcm1pdHMKICAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyNEZXJpdmF0aXZlV29ya3MiCiAgICAgICAgLz48L2NjOkxpY2Vuc2UKICAgICAgPjwvcmRmOlJERgogICAgPjwvbWV0YWRhdGEKICA+PC9zdmcKPgo=");
+
+/***/ }),
+
+/***/ "./src/blocks/lesson-query/edit.js":
+/*!*****************************************!*\
+  !*** ./src/blocks/lesson-query/edit.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _tools_filter_controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../tools/filter-controls */ "./src/blocks/tools/filter-controls.js");
+/* harmony import */ var _tools_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../tools/utils */ "./src/blocks/tools/utils.js");
+
+
+
+
+
+
+
+
+
+const TEMPLATE = [['lsedu-plus/lesson-list-header', {}], ['lsedu-plus/lesson-list', {}]];
+
+// Edit
+
+function Edit(props) {
+  const {
+    attributes,
+    setAttributes,
+    context
+  } = props;
+  const {
+    postType,
+    orderBy,
+    order,
+    inherit,
+    setTaxonomy
+  } = attributes;
+  const {
+    postTypesTaxonomiesMap,
+    postTypesSelectOptions
+  } = (0,_tools_utils__WEBPACK_IMPORTED_MODULE_8__.usePostTypes)();
+  const {
+    taxList
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
+    const {
+      getEntityRecords
+    } = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.store);
+    return {
+      taxList: getEntityRecords('taxonomy', setTaxonomy.taxType, {
+        per_page: -1,
+        context: 'view'
+      })
+    };
+  }, [setTaxonomy]);
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
+    className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('lsedup-lesson-list__container')
+  });
+  const taxonomyTypesSelectOptions = () => (postTypesTaxonomiesMap[postType] || []).map(tax => ({
+    label: tax,
+    value: tax
+  }), [postTypesTaxonomiesMap]);
+  const onTaxTypeChange = value => {
+    const tempObj = {
+      ...setTaxonomy
+    };
+    tempObj.taxType = value;
+    setAttributes({
+      setTaxonomy: tempObj
+    });
+  };
+  const onTaxChange = value => {
+    const tempObj = {
+      ...setTaxonomy
+    };
+    tempObj.taxSelect = value;
+    setAttributes({
+      setTaxonomy: tempObj
+    });
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Settings', 'lsedu-plus')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Inherit query from template', 'lsedu-plus'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Toggle to use the global query context that is set with the current template, such as an archive or search. Disable to customize the settings independently.'),
+    checked: inherit,
+    onChange: value => setAttributes({
+      inherit: !!value
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !inherit && postTypesSelectOptions && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Post type', 'lsedu-plus'),
+    value: postType,
+    options: postTypesSelectOptions,
+    onChange: postType => setAttributes({
+      postType
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.', 'lsedu-plus')
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.QueryControls, {
+    orderBy: orderBy,
+    onOrderByChange: orderBy => {
+      setAttributes({
+        orderBy
+      });
+    },
+    order: order,
+    onOrderChange: order => {
+      setAttributes({
+        order
+      });
+    }
+  }))), !inherit && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Filters', 'ls-studio-blocks')
+  }, postTypesTaxonomiesMap && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Taxonomy', 'lsedu-plus'),
+    options: taxonomyTypesSelectOptions(),
+    value: setTaxonomy.taxType,
+    onChange: onTaxTypeChange,
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.', 'lsedu-plus')
+  }), taxList && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_tools_filter_controls__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    label: setTaxonomy.taxType,
+    categoriesList: taxList,
+    selectedCategoryId: setTaxonomy.taxSelect,
+    onCategoryChange: onTaxChange
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks, {
+    template: TEMPLATE,
+    orientation: "horizontal"
+  })));
+}
+
+/***/ }),
+
+/***/ "./src/blocks/lesson-query/save.js":
+/*!*****************************************!*\
+  !*** ./src/blocks/lesson-query/save.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ save)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function save() {
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save();
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null));
+}
+
+/***/ }),
+
+/***/ "./src/blocks/tools/category-select.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/tools/category-select.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CategorySelect)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _terms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./terms */ "./src/blocks/tools/terms.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+function CategorySelect(_ref) {
+  let {
+    label,
+    noOptionLabel,
+    categoriesList,
+    selectedCategoryId,
+    onChange,
+    ...props
+  } = _ref;
+  const termsTree = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => {
+    return (0,_terms__WEBPACK_IMPORTED_MODULE_2__.buildTermsTree)(categoriesList);
+  }, [categoriesList]);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TreeSelect, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    label,
+    noOptionLabel,
+    onChange,
+    tree: termsTree,
+    selectedId: selectedCategoryId
+  }, props));
+}
+
+/***/ }),
+
+/***/ "./src/blocks/tools/filter-controls.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/tools/filter-controls.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ QueryControls)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _category_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category-select */ "./src/blocks/tools/category-select.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+const MAX_CATEGORIES_SUGGESTIONS = 20;
+function QueryControls(_ref) {
+  let {
+    label,
+    pluralLabel,
+    categoriesList,
+    selectedCategoryId,
+    categorySuggestions,
+    selectedCategories,
+    onCategoryChange
+  } = _ref;
+  return [categoriesList && onCategoryChange && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_category_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    key: "filter-controls-category-select",
+    categoriesList: categoriesList,
+    label: label,
+    noOptionLabel: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('All'),
+    selectedCategoryId: selectedCategoryId,
+    onChange: onCategoryChange
+  }), categorySuggestions && onCategoryChange && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FormTokenField, {
+    key: "filter-controls-categories-select",
+    label: pluralLabel,
+    value: selectedCategories && selectedCategories.map(item => ({
+      id: item.id,
+      value: item.name || item.value
+    })),
+    suggestions: Object.keys(categorySuggestions),
+    onChange: onCategoryChange,
+    maxSuggestions: MAX_CATEGORIES_SUGGESTIONS
+  })];
+}
+
+/***/ }),
+
+/***/ "./src/blocks/tools/terms.js":
+/*!***********************************!*\
+  !*** ./src/blocks/tools/terms.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "buildTermsTree": () => (/* binding */ buildTermsTree)
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Returns terms in a tree form.
+ *
+ * @param {Array} flatTerms Array of terms in flat format.
+ *
+ * @return {Array} Array of terms in tree format.
+ */
+function buildTermsTree(flatTerms) {
+  const flatTermsWithParentAndChildren = flatTerms.map(term => {
+    return {
+      children: [],
+      parent: null,
+      ...term
+    };
+  });
+  const termsByParent = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.groupBy)(flatTermsWithParentAndChildren, 'parent');
+  if (termsByParent.null && termsByParent.null.length) {
+    return flatTermsWithParentAndChildren;
+  }
+  const fillWithChildren = terms => {
+    return terms.map(term => {
+      const children = termsByParent[term.id];
+      return {
+        ...term,
+        children: children && children.length ? fillWithChildren(children) : []
+      };
+    });
+  };
+  return fillWithChildren(termsByParent['0'] || []);
+}
+
+/***/ }),
+
+/***/ "./src/blocks/tools/utils.js":
+/*!***********************************!*\
+  !*** ./src/blocks/tools/utils.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isResponsive": () => (/* binding */ isResponsive),
+/* harmony export */   "usePostTypes": () => (/* binding */ usePostTypes),
+/* harmony export */   "witchProvider": () => (/* binding */ witchProvider)
+/* harmony export */ });
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const embedProviders = [{
+  name: 'Youtube',
+  slug: 'youtube',
+  patterns: [/^https?:\/\/((m|www)\.)?youtube\.com\/.+/i, /^https?:\/\/youtu\.be\/.+/i],
+  responsive: true
+}, {
+  name: 'Vimeo',
+  slug: 'vimeo',
+  patterns: [/^https?:\/\/((player|www)\.)?vimeo\.com\/.+/i],
+  responsive: true
+}, {
+  name: 'Videa',
+  slug: 'videa',
+  patterns: [/\/\/videa\.hu\/.+/i],
+  responsive: true
+}];
+const usePostTypes = () => {
+  const postTypes = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
+    const {
+      getPostTypes
+    } = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_2__.store);
+    const excludedPostTypes = ['attachment'];
+    const filteredPostTypes = getPostTypes({
+      per_page: -1
+    })?.filter(_ref => {
+      let {
+        viewable,
+        slug
+      } = _ref;
+      return viewable && !excludedPostTypes.includes(slug);
+    });
+    return filteredPostTypes;
+  }, []);
+  const postTypesTaxonomiesMap = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => {
+    if (!postTypes?.length) return;
+    return postTypes.reduce((accumulator, type) => {
+      accumulator[type.slug] = type.taxonomies;
+      return accumulator;
+    }, {});
+  }, [postTypes]);
+  const postTypesSelectOptions = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => (postTypes || []).map(_ref2 => {
+    let {
+      labels,
+      slug
+    } = _ref2;
+    return {
+      label: labels.singular_name,
+      value: slug
+    };
+  }), [postTypes]);
+  return {
+    postTypesTaxonomiesMap,
+    postTypesSelectOptions
+  };
+};
+const matchProvider = (url, patterns) => {
+  return patterns.some(pattern => url.match(pattern));
+};
+const witchProvider = url => {
+  let response = 'wordpress';
+  embedProviders.map(prov => {
+    const result = matchProvider(url, prov.patterns);
+    if (result) {
+      response = prov.slug;
+    }
+  });
+  return response;
+};
+const isResponsive = url => {
+  let response = false;
+  embedProviders.map(prov => {
+    const result = matchProvider(url, prov.patterns);
+    if (result) {
+      response = prov.responsive;
+    }
+  });
+  return response;
+};
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/***/ ((module, exports) => {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+	var nativeCodeString = '[native code]';
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
+				}
+			} else if (argType === 'object') {
+				if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+					classes.push(arg.toString());
+					continue;
+				}
+
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
+
+/***/ }),
+
+/***/ "./src/blocks/lesson-query/main.scss":
+/*!*******************************************!*\
+  !*** ./src/blocks/lesson-query/main.scss ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["lodash"];
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/core-data":
+/*!**********************************!*\
+  !*** external ["wp","coreData"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["coreData"];
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["data"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _extends)
+/* harmony export */ });
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./src/blocks/lesson-query/block.json":
+/*!********************************************!*\
+  !*** ./src/blocks/lesson-query/block.json ***!
+  \********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"lsedu-plus/lesson-query","version":"0.1.0","title":"La Saphire Lesson Query","category":"la-saphire","description":"Example static block scaffolded with Create Block tool.","attributes":{"postType":{"type":"string","default":"lesson"},"order":{"type":"string","default":"asc"},"orderBy":{"type":"string","default":"title"},"inherit":{"type":"boolean","default":false},"setTaxonomy":{"type":"object","default":{"taxSelect":"","taxType":"area"}}},"supports":{"align":["wide","full"],"color":{"text":false,"link":false,"background":true,"gradients":true},"html":false,"spacing":{"margin":true,"padding":true}},"providesContext":{"postType":"postType","order":"order","orderBy":"orderBy","inherit":"inherit","setTaxonomy":"setTaxonomy"},"usesContext":["postId"],"textdomain":"lsedu-plus","editorScript":"file:./index.js","style":"file:./index.css"}');
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!******************************************!*\
+  !*** ./src/blocks/lesson-query/index.js ***!
+  \******************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.scss */ "./src/blocks/lesson-query/main.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/lesson-query/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/lesson-query/save.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/lesson-query/block.json");
+/* harmony import */ var _logo_01_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../logo-01.svg */ "./src/logo-01.svg");
+
+
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
+  icon: {
+    src: _logo_01_svg__WEBPACK_IMPORTED_MODULE_5__.ReactComponent
+  },
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+});
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=index.js.map
