@@ -1,1 +1,0 @@
-{"version":3,"file":"blocks/lesson-featured-image/index.css","mappings":";;;AAAA;EACE;EACA;EACA;AACF,C","sources":["webpack://lsedu-plus/./src/blocks/lesson-featured-image/main.scss"],"sourcesContent":[".wp-block-lsedu-plus-lesson-featured-image img {\n  width: 100%;\n  height: auto;\n  display: block;\n}"],"names":[],"sourceRoot":""}
