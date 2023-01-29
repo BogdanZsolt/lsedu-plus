@@ -188,16 +188,6 @@ export default function Edit({
 								></iframe>
 							</div>
 						)}
-						{videoProvider === 'videa' && (
-							<div className="lsedup-videa-video-player">
-								<iframe
-									id="player"
-									src={videoSrc}
-									frameborder="0"
-									allow="fullscreen;"
-								></iframe>
-							</div>
-						)}
 					</Disabled>
 				</figure>
 			)}

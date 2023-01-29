@@ -3,12 +3,40 @@
 function lsedup_lesson_list_render_cb($attributes, $content, $block){
 	$order = (isset($block->context['order']) && !empty($block->context['order'])) ? $block->context['order'] : 'ASC';
 	$orderby = (isset($block->context['orderBy']) && !empty($block->context['orderBy'])) ? $block->context['orderBy'] : 'title';
-	$set_taxonomy = $block->context['setTaxonomy'];
+	$set_taxonomies = $block->context['setTaxonomy'];
 	$slider_scroller_textcolor = (isset($attributes['sliderScrollerColor']['textColor']) && !empty($attributes['sliderScrollerColor']['textColor'])) ? $attributes['sliderScrollerColor']['textColor'] : '#d3d3d3bf';
 	$slider_scroller_background = (isset($attributes['sliderScrollerColor']['background']) && !empty($attributes['sliderScrollerColor']['background'])) ? $attributes['sliderScrollerColor']['background'] : '#ffffff00';
 	$use_global_query = ( isset( $block->context['inherit'] ) && $block->context['inherit'] );
 	$tax_id = (isset($set_taxonomy['taxSelect']) && !empty($set_taxonomy['taxSelect'])) ? intval($set_taxonomy['taxSelect']) : intval('');
 	$tax_operator = (isset($set_taxonomy['taxSelect']) && !empty($set_taxonomy['taxSelect'])) ? 'IN' : 'NOT IN';
+
+	$tax_args = array();
+	foreach($set_taxonomies as $set_taxonomy){
+		if($set_taxonomy['field'] === 'term_id'){
+			if(isset($set_taxonomy['taxSelect']) && !empty($set_taxonomy['taxSelect'])){
+				$terms = intval($set_taxonomy['taxSelect']);
+			} else {
+				$terms = intval('');
+			}
+		}
+		elseif($set_taxonomy['field'] === 'slug'){
+			if(isset($set_taxonomy['taxSelect']) && $set_taxonomy['taxSelect'] !== '0'){
+				$terms = sanitize_text_field($set_taxonomy['taxSelect']);
+			} else {
+				$terms = '';
+			}
+		}
+		array_push(
+			$tax_args,
+			array(
+				'taxonomy' => $set_taxonomy['taxType'],
+				'field' => $set_taxonomy['field'],
+				'terms' => $terms,
+				'operator' => (isset($terms) && !empty($terms)) ? 'IN' : 'NOT IN',
+			),
+		);
+	}
+
 	$query_args = array(
 		'post_type'	=> $block->context['postType'],
 		'post_status' => 'publish',
@@ -17,15 +45,9 @@ function lsedup_lesson_list_render_cb($attributes, $content, $block){
 		'nopaging' => true,
 		'posts_per_page' => -1,
 		'post_parent'	=> 0,
-		'tax_query' => array(
-			array(
-				'taxonomy' => $set_taxonomy['taxType'],
-				'field' => 'term_id',
-				'terms' => $tax_id,
-				'operator' => $tax_operator,
-			),
-		)
+		'tax_query' => $tax_args,
 	);
+
 	if($use_global_query){
 		global $wp_query;
 		$args = array_merge(

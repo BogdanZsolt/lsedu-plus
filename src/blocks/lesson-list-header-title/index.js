@@ -46,13 +46,13 @@ registerBlockType(block.name, {
 				const { getEntityRecords, isResolving } = select(coreStore);
 				const catId = [];
 				const taxId =
-					setTaxonomy && setTaxonomy.taxSelect
-						? setTaxonomy.taxSelect
+					setTaxonomy[0] && setTaxonomy[0].taxSelect
+						? setTaxonomy[0].taxSelect
 						: '';
 				catId[0] = Number(taxId);
 				const taxonomyArgs = [
 					'taxonomy',
-					setTaxonomy.taxType,
+					setTaxonomy[0].taxType,
 					{
 						include: catId,
 					},

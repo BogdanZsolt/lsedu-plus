@@ -28,11 +28,13 @@ export default function Edit(props) {
 	const { postType, orderBy, order, inherit, setTaxonomy } = attributes;
 	const { postTypesTaxonomiesMap, postTypesSelectOptions } = usePostTypes();
 
+	console.log(setTaxonomy);
+
 	const { taxList } = useSelect(
 		(select) => {
 			const { getEntityRecords } = select(coreStore);
 			return {
-				taxList: getEntityRecords('taxonomy', setTaxonomy.taxType, {
+				taxList: getEntityRecords('taxonomy', setTaxonomy[0].taxType, {
 					per_page: -1,
 					context: 'view',
 				}),
@@ -55,15 +57,18 @@ export default function Edit(props) {
 		);
 
 	const onTaxTypeChange = (value) => {
-		const tempObj = { ...setTaxonomy };
-		tempObj.taxType = value;
-		setAttributes({ setTaxonomy: tempObj });
+		const tempTax = [...setTaxonomy];
+		tempTax[0].taxType = value;
+		console.log(tempTax);
+		setAttributes({ setTaxonomy: tempTax });
 	};
 
 	const onTaxChange = (value) => {
-		const tempObj = { ...setTaxonomy };
-		tempObj.taxSelect = value;
-		setAttributes({ setTaxonomy: tempObj });
+		const tempTax = [...setTaxonomy];
+		console.log(tempTax);
+		tempTax[0].taxSelect = value;
+		console.log(tempTax);
+		setAttributes({ setTaxonomy: tempTax });
 	};
 
 	return (
@@ -113,7 +118,7 @@ export default function Edit(props) {
 							<SelectControl
 								label={__('Taxonomy', 'lsedu-plus')}
 								options={taxonomyTypesSelectOptions()}
-								value={setTaxonomy.taxType}
+								value={setTaxonomy[0].taxType}
 								onChange={onTaxTypeChange}
 								help={__(
 									'WordPress contains different types of content and they are divided into collections called “Post types”. By default there are a few different ones such as blog posts and pages, but plugins could add more.',
@@ -123,9 +128,9 @@ export default function Edit(props) {
 						)}
 						{taxList && (
 							<FilterControls
-								label={setTaxonomy.taxType}
+								label={setTaxonomy[0].taxType}
 								categoriesList={taxList}
-								selectedCategoryId={setTaxonomy.taxSelect}
+								selectedCategoryId={setTaxonomy[0].taxSelect}
 								onCategoryChange={onTaxChange}
 							/>
 						)}

@@ -24,11 +24,12 @@
 			"default": false
 		},
 		"setTaxonomy": {
-			"type": "object",
-			"default": {
+			"type": "array",
+			"default": [{
 				"taxSelect": "",
+				"field": "term_id",
 				"taxType": "area"
-			}
+			}]
 		}
 	},
 	"supports": {

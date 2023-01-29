@@ -1,7 +1,8 @@
 <?php
 
 function lsedup_lesson_list_header_title_render_cb($attributes, $content, $block){
-	$set_taxonomy = $block->context['setTaxonomy'];
+	$set_taxonomies = $block->context['setTaxonomy'];
+	$set_taxonomy = $set_taxonomies[0];
 	$is_title_set_active = $attributes['isTitleSettingActive'];
 	$titleInactive = isset($attributes['titleInactive'] ) && !empty($attributes['titleInactive']) ? $attributes['titleInactive'] : '';
 	$term_id = intval($set_taxonomy['taxSelect']);

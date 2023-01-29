@@ -36,7 +36,10 @@
       "default": ""
     }
   },
+  "usesContext": [
+    "postId"
+  ],
   "editorScript": "file:./index.js",
   "style": "file:./index.css",
-  "script": "file:./frontend.js"
+  "viewScript": "file:./frontend.js"
 }
