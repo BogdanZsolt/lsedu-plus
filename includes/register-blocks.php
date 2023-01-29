@@ -40,10 +40,11 @@ function lsedup_register_blocks(){
 		[ 'name' => 'lesson-single-list', 'options' => [
 			'render_callback' => 'lsedup_lesson_single_list_render_cb'
 		]],
+		['name' => 'search-result-query'],
 		[
 			'name' => 'search-result-list', 'options' => [
-			'render_callback' => 'lsedup_search_result_list_render_cb'
-		]]
+			'render_callback' => 'lsedup_lesson_search_result_list_render_cb'
+		]],
 	];
 
 	foreach($blocks as $block){

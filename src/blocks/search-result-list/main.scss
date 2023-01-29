@@ -1,0 +1,45 @@
+.wp-block-lsedu-plus-search-result-list {
+
+  &.is-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  &.has-columns-2 {
+    > div{
+      flex-shrink: 0;
+      width: calc(50% - 0.625rem);
+    }
+  }
+
+  &.has-columns-3 {
+    > div{
+      flex-shrink: 0;
+      width: calc(33.33333% - 0.83333rem);
+    }
+  }
+
+  &.has-columns-4 {
+    > div{
+      flex-shrink: 0;
+      width: calc(25% - 0.9375rem);
+    }
+  }
+
+  &.has-columns-5 {
+    > div{
+      flex-shrink: 0;
+      width: calc(20% - 1rem);
+    }
+  }
+
+  &.has-columns-6 {
+    > div{
+      flex-shrink: 0;
+      width: calc(16.66667% - 1.04167rem);
+    }
+  }
+}

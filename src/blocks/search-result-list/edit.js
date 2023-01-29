@@ -1,13 +1,21 @@
 import { memo, useMemo, useState } from '@wordpress/element';
 import {
+	BlockControls,
+	BlockContextProvider,
 	__experimentalUseBlockPreview as useBlockPreview,
 	useBlockProps,
 	useInnerBlocksProps,
 	store as blockEditorStore,
+	InspectorControls,
 } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
-import { Spinner } from '@wordpress/components';
+import {
+	Spinner,
+	PanelBody,
+	RangeControl,
+	ToolbarGroup,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { list, grid } from '@wordpress/icons';
 import classnames from 'classnames';
@@ -23,9 +31,11 @@ export default function Edit(props) {
 	const { clientId, attributes, setAttributes, context } = props;
 	const { isSlider, columns, displayLayout } = attributes;
 
-	const { postType, order, orderBy, setTaxonomy } = context;
+	const { postType, order, orderBy } = context;
 
-	const { posts } = useSelect(
+	const [activeBlockContextId, setActiveBlockContextId] = useState();
+
+	const { posts, blocks } = useSelect(
 		(select) => {
 			const { getEntityRecords } = select(coreStore);
 			const { getBlocks } = select(blockEditorStore);
@@ -38,9 +48,10 @@ export default function Edit(props) {
 			};
 			return {
 				posts: getEntityRecords('postType', postType, query),
+				blocks: getBlocks(clientId),
 			};
 		},
-		[order, orderBy, clientId, setTaxonomy]
+		[order, orderBy, clientId]
 	);
 
 	function PostTemplateBlockPreview({
@@ -113,17 +124,17 @@ export default function Edit(props) {
 		}),
 	});
 
-	// if (!posts) {
-	// 	return (
-	// 		<p {...blockProps}>
-	// 			<Spinner />
-	// 		</p>
-	// 	);
-	// }
+	if (!posts) {
+		return (
+			<p {...blockProps}>
+				<Spinner />
+			</p>
+		);
+	}
 
-	// if (!posts.length) {
-	// 	return <p {...blockProps}> {__('No results found.', 'lsedu-plus')}</p>;
-	// }
+	if (!posts.length) {
+		return <p {...blockProps}> {__('No results found.', 'lsedu-plus')}</p>;
+	}
 
 	const layoutControls = [
 		{
@@ -141,8 +152,51 @@ export default function Edit(props) {
 	];
 
 	return (
-		<div {...blockProps}>
-			<h2>Hello</h2>
-		</div>
+		<>
+			<InspectorControls>
+				<PanelBody title={__('Settings', 'lsedu-plus')}>
+					{displayLayout === 'flex' && (
+						<RangeControl
+							label={__('Columns', 'lsedu-plus')}
+							min={2}
+							max={6}
+							onChange={(columns) => setAttributes({ columns })}
+							value={columns}
+						/>
+					)}
+				</PanelBody>
+			</InspectorControls>
+			<BlockControls>
+				<ToolbarGroup controls={layoutControls} />
+			</BlockControls>
+			{blockContexts && (
+				<div {...blockProps}>
+					{blockContexts.map((blockContext) => (
+						<BlockContextProvider
+							key={blockContext.postId}
+							value={blockContext}
+						>
+							{blockContext.postId ===
+							(activeBlockContextId ||
+								blockContexts[0]?.postId) ? (
+								<PostTemplateInnerBlocks />
+							) : null}
+							<MemoizedPostTemplateBlockPreview
+								blocks={blocks}
+								blockContextId={blockContext.postId}
+								setActiveBlockContextId={
+									setActiveBlockContextId
+								}
+								isHidden={
+									blockContext.postId ===
+									(activeBlockContextId ||
+										blockContexts[0]?.postId)
+								}
+							/>
+						</BlockContextProvider>
+					))}
+				</div>
+			)}
+		</>
 	);
 }

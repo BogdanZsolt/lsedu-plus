@@ -1,19 +1,23 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "lsedu-plus/search-result-list",
+	"name": "lsedu-plus/search-result-query",
 	"version": "0.1.0",
-	"title": "La Saphire Search Result List",
+	"title": "La Saphire Search Result Query",
 	"category": "la-saphire",
 	"description": "Example static block scaffolded with Create Block tool.",
 	"attributes": {
-		"columns": {
-			"type": "number",
-			"default": 3
-		},
-		"displayLayout": {
+		"postType": {
 			"type": "string",
-			"default": "list"
+			"default": "lesson"
+		},
+		"order": {
+			"type": "string",
+			"default": "asc"
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "title"
 		}
 	},
 	"supports": {
@@ -30,7 +34,12 @@
 			"padding": true
 		}
 	},
-	"usesContext": ["postType", "order", "orderBy"],
+	"providesContext": {
+		"postType": "postType",
+		"order": "order",
+		"orderBy": "orderBy"
+	},
+	"usesContext": ["postId"],
 	"textdomain": "lsedu-plus",
 	"editorScript": "file:./index.js",
 	"style": "file:./index.css"

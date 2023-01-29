@@ -43,8 +43,11 @@ export default function Edit(props) {
 			const { getEntityRecords } = select(coreStore);
 			const { getBlocks } = select(blockEditorStore);
 			const taxId = [];
-			if (setTaxonomy.taxSelect && setTaxonomy.taxSelect !== undefined) {
-				taxId[0] = Number(setTaxonomy.taxSelect);
+			if (
+				setTaxonomy[0].taxSelect &&
+				setTaxonomy[0].taxSelect !== undefined
+			) {
+				taxId[0] = Number(setTaxonomy[0].taxSelect);
 			}
 			const query = {
 				per_page: -1,
@@ -53,10 +56,10 @@ export default function Edit(props) {
 				orderby: orderBy,
 				parent: 0,
 			};
-			if (setTaxonomy.taxType === 'category') {
+			if (setTaxonomy[0].taxType === 'category') {
 				query['categories'] = taxId;
 			} else {
-				query[setTaxonomy.taxType] = taxId;
+				query[setTaxonomy[0].taxType] = taxId;
 			}
 			return {
 				posts: getEntityRecords('postType', postType, query),
