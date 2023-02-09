@@ -14,12 +14,6 @@
     "orderBy": {
       "type": "string",
       "default": "title"
-    },
-    "durationTime": {
-      "type": "string"
-    },
-    "course": {
-      "type": "string"
     }
   },
   "supports": {

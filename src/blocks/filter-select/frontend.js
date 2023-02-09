@@ -23,6 +23,36 @@ document.addEventListener('DOMContentLoaded', () => {
 		level: '0',
 		duration: '0',
 	};
+	const parameters = [
+		'post_type',
+		'area',
+		'category',
+		'author',
+		'intensity',
+		'level',
+		'duration',
+	];
+
+	const searchInputWrapper = document.querySelector(
+		'.wp-block-search__inside-wrapper '
+	);
+
+	parameters.forEach((param, index) => {
+		let html = document.createElement('input');
+		html.type = 'hidden';
+		html.name = param;
+		html.value = params.has(param) ? params.get(param) : '0';
+		html.value =
+			!params.has(param) &&
+			param === 'area' &&
+			filterSelect.dataset.tax !== '0'
+				? filterSelect.dataset.tax
+				: html.value;
+		searchInputWrapper.insertBefore(
+			html,
+			searchInputWrapper.children[index + 1]
+		);
+	});
 
 	const filtersReset = () => {
 		if (params.get('s') !== '') {

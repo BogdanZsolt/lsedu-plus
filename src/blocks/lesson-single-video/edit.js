@@ -40,9 +40,9 @@ export default function Edit({
 	const videoSrc = meta.video_data.video_src;
 	const videoProvider = meta.video_data.provider;
 	const videoResponsive = meta.video_data.responsive;
-	const videoPlayer = useRef();
+	const videoDuration = meta.video_data.videoDuration | 0;
 
-	const myVideo = document.getElementById('player');
+	const videoEl = useRef(null);
 
 	// const url = 'https://youtube.com/embed/rok6sp12EeY';
 	// const url = '//videa.hu/player?v=YRpGOgMFnQ2wl4vh';
@@ -67,12 +67,6 @@ export default function Edit({
 	// 	}
 	// }, [poster]);
 
-	const durationTime = () => {
-		const myVideo = document.querySelector('#player');
-		return myVideo.getCurrentTime;
-		// return myVideo.duration;
-	};
-
 	const onAutoplayChange = (value) => {
 		setAttributes({ autoplay: value });
 		setAttributes({ muted: value });
@@ -83,24 +77,42 @@ export default function Edit({
 		tempObj.video_src = value.url;
 		tempObj.provider = witchProvider(value.url);
 		tempObj.responsive = isResponsive(value.url);
+		tempObj.videoDuration = 0;
 		setMeta({ ...meta, video_data: tempObj });
 	};
 
 	const onSelectURL = (value) => {
 		const tempObj = { ...meta.video_data };
+		console.log(tempObj);
 		tempObj.video_src = value;
 		tempObj.provider = witchProvider(value);
 		tempObj.responsive = isResponsive(value);
+		tempObj.videoDuration = 0;
 		setMeta({ ...meta, video_data: tempObj });
 	};
 
 	const onRemoveVideo = () => {
 		const tempObj = { ...meta.video_data };
+		console.log(tempObj);
 		tempObj.video_src = '';
 		tempObj.provider = witchProvider('');
 		tempObj.responsive = isResponsive('');
+		tempObj.videoDuration = 0;
 		setMeta({ ...meta, video_data: tempObj });
 	};
+
+	const getVideoDuration = () => {
+		const video = videoEl.current;
+		const tempObj = { ...meta.video_data };
+		console.log(meta.video_data);
+		if (!video) return;
+
+		console.log(`The video is ${parseInt(video.duration)} seconds long.`);
+		tempObj.videoDuration = parseInt(video.duration);
+		setMeta({ ...meta, video_data: tempObj });
+	};
+
+	console.log(meta);
 
 	return (
 		<>
@@ -166,6 +178,8 @@ export default function Edit({
 								controls={controls}
 								autoplay={autoplay}
 								src={videoSrc}
+								ref={videoEl}
+								onLoadedMetadata={getVideoDuration}
 							></video>
 						)}
 						{videoProvider === 'youtube' && (
@@ -203,3 +217,5 @@ export default function Edit({
 		</>
 	);
 }
+
+// https://www.youtube.com/embed/_zmilpFsaJ0

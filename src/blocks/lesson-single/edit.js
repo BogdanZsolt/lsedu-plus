@@ -5,7 +5,7 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import Rating from '@mui/material/Rating';
 
 export default function Edit({ attributes, setAttributes, context }) {
-	const { order, orderBy, durationTime, course } = attributes;
+	const { order, orderBy } = attributes;
 	const { postType, postId } = context;
 
 	const ALLOWED_BLOCKS = [
@@ -72,7 +72,6 @@ export default function Edit({ attributes, setAttributes, context }) {
 	);
 
 	const blockProps = useBlockProps();
-	const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
 
 	return (
 		<div {...blockProps}>

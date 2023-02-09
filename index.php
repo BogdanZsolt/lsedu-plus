@@ -44,5 +44,7 @@ add_filter('block_categories_all', 'lsedup_new_gutenberg_category', 10, 2);
 add_action('save_post_lesson', 'lsedup_save_post_lesson');
 add_action('after_setup_theme', 'lsedup_setup_theme');
 add_action('init', 'la_saphire_lesson_blocks_register_video_metabox_template');
+add_action('init', 'la_saphire_lesson_block_register_pattern_cat');
+add_action('init', 'la_saphire_lesson_block_register_pattern');
 
 add_filter('image_size_names_choose', 'lsedup_custom_image_sizes');

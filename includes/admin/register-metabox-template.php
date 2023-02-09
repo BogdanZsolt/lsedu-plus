@@ -3,6 +3,7 @@
 function la_saphire_lesson_blocks_register_video_metabox_template(){
 	$post_type_object = get_post_type_object( 'lesson' );
 	$post_type_object->template = array(
-		array('lsedu-plus/lesson-summary')
+		array('lsedu-plus/lesson-single'),
+		array('core/paragraph', array('content' => 'Some text')),
 	);
 }

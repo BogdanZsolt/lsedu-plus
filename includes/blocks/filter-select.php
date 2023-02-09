@@ -21,7 +21,8 @@ function lsedup_filter_select_render_cb($attributes, $content, $block){
   };
 	?>
 <div class="wp-block-lsedu-plus-filter-select <?php echo $hiding; ?>" data-controller="toggle">
-  <form role="search" method="get" id="filter-select" action="<?php echo home_url( '/' ); ?>">
+  <form role="search" method="get" id="filter-select" data-tax="<?php echo is_tax('area') ? $term->slug : '0'; ?>"
+    action="<?php echo home_url( '/' ); ?>">
     <input type="hidden" class="search-field" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" />
     <input type="hidden" name="post_type" value="lesson" />
     <?php if(is_tax('area') && !is_search()){ ?>

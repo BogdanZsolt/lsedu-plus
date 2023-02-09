@@ -233,6 +233,9 @@ function lsedup_lesson_post_type(){
 					'responsive' => array(
 						'type' => 'boolean',
 					),
+					'videoDuration' => array(
+						'type' => 'integer',
+					)
 				),
 			),
 		),
